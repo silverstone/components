@@ -70,7 +70,7 @@ export class Input {
         )
       case 'select':
         return (
-          <select class="input-control">
+          <select class="input-control" onChange={e => this.onChange.emit(e)}>
             {this.options.map(option =>
               <option>{option}</option>
             )}
