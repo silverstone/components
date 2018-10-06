@@ -36,8 +36,6 @@ export namespace Components {
   interface SsInput {
     'append': string;
     'full': boolean;
-    'options': string[];
-    'optionsAsString': string;
     'placeholder': string;
     'prepend': string;
     'type': string;
@@ -49,8 +47,6 @@ export namespace Components {
     'onOnInput'?: (event: CustomEvent) => void;
     'onOnKeyDown'?: (event: CustomEvent) => void;
     'onOnKeyUp'?: (event: CustomEvent) => void;
-    'options'?: string[];
-    'optionsAsString'?: string;
     'placeholder'?: string;
     'prepend'?: string;
     'type'?: string;

@@ -3,7 +3,7 @@ import { Component, Prop, Element, Event, EventEmitter, State } from '@stencil/c
 @Component({
   tag: 'ss-input',
   styleUrl: 'ss-input.scss',
-  shadow: false
+  shadow: true
 })
 export class Input {
   
@@ -14,9 +14,10 @@ export class Input {
   @Prop() placeholder: string
   @Prop() prepend: string
   @Prop() append: string
-  @Prop() optionsAsString: string
-  @Prop() options: string[]
-
+  
+  @State() options: string[]
+  @State() isValid: boolean
+  @State() required: boolean
   @State() disabled: boolean
 
   @Event() onChange: EventEmitter
@@ -25,20 +26,28 @@ export class Input {
   @Event() onKeyUp: EventEmitter
 
   componentWillLoad() {
-    if (this.inputEl.hasAttribute('disabled')) {
-      this.disabled = true
+    this.required = this.inputEl.hasAttribute('required')
+    this.disabled = this.inputEl.hasAttribute('disabled')
+  }
+  
+  componentDidLoad() {
+    const optionList = this.inputEl.querySelectorAll('option')
+    const options = []
+    for (let i = 0; i < optionList.length; i++) {
+      options.push(optionList.item(i).innerHTML)
     }
-    this.inputEl.classList.add('input-control')
+    this.options = options
+  }
+
+  handleInput(event) {
+    const value = event.target.value
+    if (this.required && value === '') {
+      this.isValid = false
+    }
+    this.onInput.emit(event)
   }
 
   renderInput() {
-    let options
-    if (this.optionsAsString) {
-      options = JSON.parse(this.optionsAsString.replace(/'/g, '"'))
-    } else {
-      options = this.options
-    }
-
     switch (this.type) {
       case 'textarea': 
         return (
@@ -49,9 +58,10 @@ export class Input {
       case 'select':
         return (
           <select class="input-control">
-            {(options && options.map(option => 
+            {this.options.map(option =>
               <option>{option}</option>
-            ))}
+            )}
+            <slot />
           </select>
         )
       default:
@@ -59,8 +69,8 @@ export class Input {
           <input
             type={this.type}
             class="input-control"
+            onInput={event => this.handleInput(event)}
             onChange={event => this.onChange.emit(event)}
-            onInput={event => this.onInput.emit(event)}
             onKeyDown={event => this.onKeyDown.emit(event)}
             onKeyUp={event => this.onKeyUp.emit(event)}
             disabled={this.disabled}
