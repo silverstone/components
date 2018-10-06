@@ -41,9 +41,17 @@ export class Input {
 
   handleInput(event) {
     const value = event.target.value
+
+    if (value) {
+      event.target.classList.add('has-value')
+    } else {
+      event.target.classList.remove('has-value')
+    }
+
     if (this.required && value === '') {
       this.isValid = false
     }
+    
     this.onInput.emit(event)
   }
 
@@ -51,9 +59,14 @@ export class Input {
     switch (this.type) {
       case 'textarea': 
         return (
-          <textarea class="input-control">
-            {this.placeholder}
-          </textarea>
+          <textarea 
+            class="input-control"
+            onInput={event => this.handleInput(event)}
+            onChange={event => this.onChange.emit(event)}
+            onKeyDown={event => this.onKeyDown.emit(event)}
+            onKeyUp={event => this.onKeyUp.emit(event)}
+            required
+          />
         )
       case 'select':
         return (
