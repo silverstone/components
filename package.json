@@ -2,7 +2,13 @@
   "name": "@silverstone/components",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "start": "stencil build --dev --watch --serve",
     "build": "stencil build"
@@ -12,5 +18,9 @@
   "devDependencies": {
     "@stencil/core": "^0.13.2",
     "@stencil/sass": "^0.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silverstone/components.git"
   }
 }
