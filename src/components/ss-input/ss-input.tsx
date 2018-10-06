@@ -28,9 +28,9 @@ export class Input {
   componentWillLoad() {
     this.required = this.inputEl.hasAttribute('required')
     this.disabled = this.inputEl.hasAttribute('disabled')
-  }
-  
-  componentDidLoad() {
+
+    // Since slotted <option> elements don't work by default, we use querySelectorAll
+    // to find those elements and store all their innerHTML values in an array. 
     const optionList = this.inputEl.querySelectorAll('option')
     const options = []
     for (let i = 0; i < optionList.length; i++) {
