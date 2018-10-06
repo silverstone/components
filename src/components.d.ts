@@ -33,6 +33,29 @@ export namespace Components {
     'type'?: 'basic' | 'raised' | 'outline' | 'flat';
   }
 
+  interface SsInput {
+    'append': string;
+    'full': boolean;
+    'options': string[];
+    'optionsAsString': string;
+    'placeholder': string;
+    'prepend': string;
+    'type': string;
+  }
+  interface SsInputAttributes extends StencilHTMLAttributes {
+    'append'?: string;
+    'full'?: boolean;
+    'onOnChange'?: (event: CustomEvent) => void;
+    'onOnInput'?: (event: CustomEvent) => void;
+    'onOnKeyDown'?: (event: CustomEvent) => void;
+    'onOnKeyUp'?: (event: CustomEvent) => void;
+    'options'?: string[];
+    'optionsAsString'?: string;
+    'placeholder'?: string;
+    'prepend'?: string;
+    'type'?: string;
+  }
+
   interface SsModal {
     'backdrop': boolean;
     'backdropCloseButton': boolean;
@@ -51,12 +74,14 @@ declare global {
   interface StencilElementInterfaces {
     'SsBackdrop': Components.SsBackdrop;
     'SsButton': Components.SsButton;
+    'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
   }
 
   interface StencilIntrinsicElements {
     'ss-backdrop': Components.SsBackdropAttributes;
     'ss-button': Components.SsButtonAttributes;
+    'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
   }
 
@@ -73,6 +98,12 @@ declare global {
     new (): HTMLSsButtonElement;
   };
 
+  interface HTMLSsInputElement extends Components.SsInput, HTMLStencilElement {}
+  var HTMLSsInputElement: {
+    prototype: HTMLSsInputElement;
+    new (): HTMLSsInputElement;
+  };
+
   interface HTMLSsModalElement extends Components.SsModal, HTMLStencilElement {}
   var HTMLSsModalElement: {
     prototype: HTMLSsModalElement;
@@ -82,12 +113,14 @@ declare global {
   interface HTMLElementTagNameMap {
     'ss-backdrop': HTMLSsBackdropElement
     'ss-button': HTMLSsButtonElement
+    'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
   }
 
   interface ElementTagNameMap {
     'ss-backdrop': HTMLSsBackdropElement;
     'ss-button': HTMLSsButtonElement;
+    'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
   }
 
