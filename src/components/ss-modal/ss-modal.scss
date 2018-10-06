@@ -1,0 +1,39 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: fixed;
+  pointer-events: none;
+  background-color: white;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  transition: all 250ms ease-out;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -999;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.show {
+  z-index: 999;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+slot[name=title] {
+  color: red;
+}
