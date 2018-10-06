@@ -1,0 +1,31 @@
+.has-popover {
+    position: relative;
+}
+
+.popover {
+    background-color: #f1f1f1;
+    position: absolute;
+    display: flex;
+    width: 400px;
+    height: 400px;
+    margin-top: 24px;
+    right: 24px;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(.8);
+    z-index: -999;
+    transition: all 250ms ease-in-out;
+}
+  
+.show {
+    z-index: 999;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+  
+  slot[name=title] {
+    color: red;
+  }
