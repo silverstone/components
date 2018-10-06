@@ -8,6 +8,8 @@ General purpose web-components built in StencilJS
 $ npm i @silverstone/components
 ```
 
+Consult [the Stencil docs](https://stenciljs.com/docs/overview) for details on integrating into your framework of choice.
+
 ## Components
 
 ### Button
