@@ -1,5 +1,5 @@
 {
-  "name": "silverstone-components",
+  "name": "@silverstone/components",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "start": "stencil build --dev --watch --serve",
     "build": "stencil build"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Silverstone",
+  "license": "MIT",
   "devDependencies": {
     "@stencil/core": "^0.13.2",
     "@stencil/sass": "^0.1.1"
