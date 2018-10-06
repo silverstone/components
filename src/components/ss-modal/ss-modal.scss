@@ -25,6 +25,7 @@
   z-index: -999;
   padding: 16px;
   border-radius: 4px;
+  transform: scale(.8);
 }
 
 .show {
@@ -32,6 +33,7 @@
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
+  transform: scale(1);
 }
 
 slot[name=title] {
