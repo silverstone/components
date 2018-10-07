@@ -1,4 +1,5 @@
 $border-color: #cacaca;
+$error-border-color: #ff3333;
 
 .wrapper {
   position: relative;
@@ -43,6 +44,10 @@ $border-color: #cacaca;
   &:not(:focus).has-value ~ .floating-label {
     top: -1px;
     font-size: 11px;
+  }
+
+  &:invalid {
+    border-color: $error-border-color;
   }
 }
 

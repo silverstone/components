@@ -16,9 +16,9 @@ export class Input {
   @Prop() append: string
   
   @State() options: string[]
-  @State() isValid: boolean
   @State() required: boolean
   @State() disabled: boolean
+  @State() pattern: string
 
   @Event() onChange: EventEmitter
   @Event() onInput: EventEmitter
@@ -47,10 +47,6 @@ export class Input {
     } else {
       event.target.classList.remove('has-value')
     }
-
-    if (this.required && value === '') {
-      this.isValid = false
-    }
     
     this.onInput.emit(event)
   }
@@ -61,11 +57,11 @@ export class Input {
         return (
           <textarea 
             class="input-control"
+            required={this.required}
             onInput={event => this.handleInput(event)}
             onChange={event => this.onChange.emit(event)}
             onKeyDown={event => this.onKeyDown.emit(event)}
             onKeyUp={event => this.onKeyUp.emit(event)}
-            required
           />
         )
       case 'select':
@@ -82,12 +78,13 @@ export class Input {
           <input
             type={this.type}
             class="input-control"
+            disabled={this.disabled}
+            required={this.required}
+            pattern={this.pattern}
             onInput={event => this.handleInput(event)}
             onChange={event => this.onChange.emit(event)}
             onKeyDown={event => this.onKeyDown.emit(event)}
             onKeyUp={event => this.onKeyUp.emit(event)}
-            disabled={this.disabled}
-            required
           />
         )
     }
