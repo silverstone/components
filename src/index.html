@@ -22,6 +22,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0 24px;
     }
 
     nav {
@@ -39,37 +40,47 @@
     }
 
     li {
-      width: 80px;
+      width: 24px;
       height: 100%;
-      margin: 0 24px;
+      margin: 0 8px;
       background-color: #f1f1f1;
     }
 
-    li.has-popover {
-
-    }
+    
   </style>
 </head>
 <body>
   <div class="header">
     <nav>
       <ul>
-        <li><a href="#">Test</a></li>
-        <li><a href="#">Test</a></li>
-        <li><ss-popover></ss-popover></li>
-        <li class="has-popover"><a href="#" class="popover-toggle">Test</a></li>
+        <li><ss-popover id="pop1" align="right" position="top">
+          <div slot="content">
+            <div style="width: 400px; background-color: #eee; height: 400px;"></div>
+          </div>
+        </ss-popover></li>
+        <li><ss-popover id="pop2" align="right" position="bottom" offset-x="80">
+          <div slot="content">
+            <div style="width: 250px; background-color: #777; height: 300px;"></div>
+          </div>
+        </ss-popover></li>
+        <li><ss-popover id="pop3" align="right" position="bottom" offset-x="40">
+          <div slot="content">
+            <div style="width: 300px; background-color: #555; height: 400px;"></div>
+          </div>
+        </ss-popover></li>
+        <li><ss-popover id="pop4" align="right" position="bottom"></ss-popover></li>
       </ul>
     </nav>
   </div>
 
   <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button>
  
-  <ss-modal close-outside="true" backdrop="false">
+  <!-- <ss-modal close-outside="true" backdrop="false">
     <ss-button color="primary" type="flat" onclick="closeModal()">close</ss-button>
     <div slot="title">Title Here</div>
     <span slot="subtitle">Subtitle Here</span>
     <button slot="backdrop-close-button">Close</button>
-  </ss-modal>
+  </ss-modal> -->
 
   <script>
     const $ = (selector) => document.querySelector(selector)
