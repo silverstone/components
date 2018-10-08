@@ -35,6 +35,8 @@ export namespace Components {
 
   interface SsInput {
     'append': string;
+    'errorPattern': string;
+    'errorRequired': string;
     'full': boolean;
     'placeholder': string;
     'prepend': string;
@@ -42,6 +44,8 @@ export namespace Components {
   }
   interface SsInputAttributes extends StencilHTMLAttributes {
     'append'?: string;
+    'errorPattern'?: string;
+    'errorRequired'?: string;
     'full'?: boolean;
     'onOnChange'?: (event: CustomEvent) => void;
     'onOnInput'?: (event: CustomEvent) => void;
