@@ -14,11 +14,14 @@ export class Input {
   @Prop() placeholder: string
   @Prop() prepend: string
   @Prop() append: string
+  @Prop() errorRequired: string = "This field is required."
+  @Prop() errorPattern: string = "Invalid entry."
   
   @State() options: string[]
   @State() required: boolean
   @State() disabled: boolean
   @State() pattern: string
+  @State() error: string
 
   @Event() onChange: EventEmitter
   @Event() onInput: EventEmitter
@@ -46,6 +49,12 @@ export class Input {
       event.target.classList.add('has-value')
     } else {
       event.target.classList.remove('has-value')
+    }
+
+    if (this.required && !value) {
+      this.error = this.errorRequired
+    } else if (this.pattern && !(new RegExp(this.pattern)).test(value)) {
+      this.error = this.errorPattern
     }
     
     this.onInput.emit(event)
@@ -93,6 +102,7 @@ export class Input {
   render() {
     return (
       <div class="wrapper">
+        <div class="inner-wrapper">
           {this.prepend && 
             <span class="prepend">
               {this.prepend}
@@ -114,6 +124,12 @@ export class Input {
               {this.append}
             </span>
           }
+        </div>
+        {this.error &&
+          <div class="error">
+            {this.error}
+          </div>
+        }
       </div>
     )
   }
