@@ -68,6 +68,15 @@ export namespace Components {
     'backdropCloseButton'?: boolean;
     'closeOutside'?: boolean;
   }
+
+  interface SsTable {
+    'columns': any[];
+    'data': any[];
+  }
+  interface SsTableAttributes extends StencilHTMLAttributes {
+    'columns'?: any[];
+    'data'?: any[];
+  }
 }
 
 declare global {
@@ -76,6 +85,7 @@ declare global {
     'SsButton': Components.SsButton;
     'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
+    'SsTable': Components.SsTable;
   }
 
   interface StencilIntrinsicElements {
@@ -83,6 +93,7 @@ declare global {
     'ss-button': Components.SsButtonAttributes;
     'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
+    'ss-table': Components.SsTableAttributes;
   }
 
 
@@ -110,11 +121,18 @@ declare global {
     new (): HTMLSsModalElement;
   };
 
+  interface HTMLSsTableElement extends Components.SsTable, HTMLStencilElement {}
+  var HTMLSsTableElement: {
+    prototype: HTMLSsTableElement;
+    new (): HTMLSsTableElement;
+  };
+
   interface HTMLElementTagNameMap {
     'ss-backdrop': HTMLSsBackdropElement
     'ss-button': HTMLSsButtonElement
     'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
+    'ss-table': HTMLSsTableElement
   }
 
   interface ElementTagNameMap {
@@ -122,6 +140,7 @@ declare global {
     'ss-button': HTMLSsButtonElement;
     'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
+    'ss-table': HTMLSsTableElement;
   }
 
 
