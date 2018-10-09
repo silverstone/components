@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html'
 import { withActions } from '@storybook/addon-actions'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
+import { checkA11y } from '@storybook/addon-a11y'
 
 storiesOf('Button', module)
   .addDecorator(withActions('click ss-button'))
