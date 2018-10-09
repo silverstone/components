@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.container__has-sidebar {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar__sheath {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 230px;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  &.--start {
+    left: 0;
+  }
+
+  &.--end {
+    right: 0;
+  }
+}

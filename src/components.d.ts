@@ -92,22 +92,38 @@ export namespace Components {
     'type'?: string;
   }
 
+  interface SsSheath {}
+  interface SsSheathAttributes extends StencilHTMLAttributes {}
+
+  interface SsSidebar {
+    'close': () => void;
+    'mode': string;
+    'open': () => void;
+    'position': string;
+    'state': string;
+  }
+  interface SsSidebarAttributes extends StencilHTMLAttributes {
+    'mode'?: string;
+    'position'?: string;
+    'state'?: string;
+  }
+
   interface SsTopbar {
     'cols': number;
+    'header': boolean;
     'nav': boolean;
     'navItems': number;
     'rows': number;
     'template': string;
-    'title': boolean;
     'tools': number;
   }
   interface SsTopbarAttributes extends StencilHTMLAttributes {
     'cols'?: number;
+    'header'?: boolean;
     'nav'?: boolean;
     'navItems'?: number;
     'rows'?: number;
     'template'?: string;
-    'title'?: boolean;
     'tools'?: number;
   }
 }
@@ -119,6 +135,8 @@ declare global {
     'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
     'SsPopover': Components.SsPopover;
+    'SsSheath': Components.SsSheath;
+    'SsSidebar': Components.SsSidebar;
     'SsTopbar': Components.SsTopbar;
   }
 
@@ -128,6 +146,8 @@ declare global {
     'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
     'ss-popover': Components.SsPopoverAttributes;
+    'ss-sheath': Components.SsSheathAttributes;
+    'ss-sidebar': Components.SsSidebarAttributes;
     'ss-topbar': Components.SsTopbarAttributes;
   }
 
@@ -162,6 +182,18 @@ declare global {
     new (): HTMLSsPopoverElement;
   };
 
+  interface HTMLSsSheathElement extends Components.SsSheath, HTMLStencilElement {}
+  var HTMLSsSheathElement: {
+    prototype: HTMLSsSheathElement;
+    new (): HTMLSsSheathElement;
+  };
+
+  interface HTMLSsSidebarElement extends Components.SsSidebar, HTMLStencilElement {}
+  var HTMLSsSidebarElement: {
+    prototype: HTMLSsSidebarElement;
+    new (): HTMLSsSidebarElement;
+  };
+
   interface HTMLSsTopbarElement extends Components.SsTopbar, HTMLStencilElement {}
   var HTMLSsTopbarElement: {
     prototype: HTMLSsTopbarElement;
@@ -174,6 +206,8 @@ declare global {
     'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
     'ss-popover': HTMLSsPopoverElement
+    'ss-sheath': HTMLSsSheathElement
+    'ss-sidebar': HTMLSsSidebarElement
     'ss-topbar': HTMLSsTopbarElement
   }
 
@@ -183,6 +217,8 @@ declare global {
     'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
     'ss-popover': HTMLSsPopoverElement;
+    'ss-sheath': HTMLSsSheathElement;
+    'ss-sidebar': HTMLSsSidebarElement;
     'ss-topbar': HTMLSsTopbarElement;
   }
 
