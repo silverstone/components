@@ -104,6 +104,7 @@ export namespace Components {
   }
   interface SsSidebarAttributes extends StencilHTMLAttributes {
     'mode'?: string;
+    'onIsOpen'?: (event: CustomEvent) => void;
     'position'?: string;
     'state'?: string;
   }
