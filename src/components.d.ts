@@ -71,12 +71,16 @@ export namespace Components {
 
   interface SsTopbar {
     'cols': number;
+    'nav': boolean;
+    'navItems': number;
     'rows': number;
     'template': string;
     'tools': number;
   }
   interface SsTopbarAttributes extends StencilHTMLAttributes {
     'cols'?: number;
+    'nav'?: boolean;
+    'navItems'?: number;
     'rows'?: number;
     'template'?: string;
     'tools'?: number;

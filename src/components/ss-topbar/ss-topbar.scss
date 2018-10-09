@@ -47,7 +47,12 @@
     }
     slot[name=col-2] {
       .topbar__col {
-        width: 100%;
+        flex: 1;
+      }
+    }
+    slot[name=col-3] {
+      .topbar__col {
+        flex: 0;
       }
     }
   }
@@ -76,9 +81,9 @@
     }
   }
 
-  .toolbar__sheath {
+  .header__sheath {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
     padding: 0 24px;
@@ -92,24 +97,30 @@
         color: rgba(0,0,0,.54);
       }
     }
+  }
 
-    .tools {
-      ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+  .toolbar__sheath {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
 
-        li {
-          padding: 0 8px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-          .tool {
-            width: 32px;
-            height: 32px;
-            background-color: #eee;
-            border-radius: 50%;
-          }
+      li {
+        padding: 0 8px;
+
+        .tool {
+          width: 32px;
+          height: 32px;
+          background-color: #eee;
+          border-radius: 50%;
         }
       }
     }

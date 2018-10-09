@@ -11,6 +11,8 @@ export class Topbar {
   @Prop() cols: number = 3
   @Prop() template: string = "custom"
   @Prop() tools: number = 4
+  @Prop() nav: boolean = true
+  @Prop() navItems: number = 4
 
   render() {
     //Custom
@@ -55,14 +57,40 @@ export class Topbar {
               <slot name="col-2">
                 <div class="topbar__col">
                   <slot name="row-1 col-2">
-                    <div class="toolbar__sheath">
-                      <slot name="toolbar">
+                    <div class="header__sheath">
+                      <slot name="header">
                         <div class="header">
-                          <slot name="header">
+                          <slot name="title">
                             <span>Page Title</span>
                           </slot>
                         </div>
-                        <div class="tools">
+                      </slot>
+                      {this.nav
+                        ? <slot name="nav">
+                            <div class="nav">
+                              <ul>
+                                {Array(this.navItems).fill(null).map((_, inavItems) => (
+                                  <li>
+                                    <slot name={"node-" + (inavItems + 1)}>
+                                      <div class="node"></div>
+                                    </slot>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </slot>
+                        : null
+                      }
+                    </div>
+                  </slot>
+                </div>
+              </slot>
+              <slot name="col-3">
+                <div class="topbar__col">
+                  <slot name="row-1 col-3">
+                    <div class="toolbar__sheath">
+                      <slot name="toolbar">
+                        <div class="toolbar">
                           <ul>
                             {Array(this.tools).fill(null).map((_, itools) => (
                               <li>
@@ -78,7 +106,6 @@ export class Topbar {
                   </slot>
                 </div>
               </slot>
-              
 
             </div>
           </slot>
