@@ -89,6 +89,8 @@
     padding: 0 24px;
 
     .header {
+      margin-right: 24px;
+      
       span {
         font-family: 'Verdana';
         font-size: 16px;
@@ -103,7 +105,7 @@
       justify-content: flex-start;
       align-items: center;
       height: 100%;
-      margin: 0 48px;
+      margin: 0 24px;
 
       ul {
         display: flex;

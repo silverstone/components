@@ -12,7 +12,7 @@ export class Topbar {
   @Prop() template: string = "custom"
   @Prop() tools: number = 4
   @Prop() title: boolean = true
-  @Prop() nav: boolean = true
+  @Prop() nav: boolean = false
   @Prop() navItems: number = 4
 
   render() {
