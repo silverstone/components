@@ -75,6 +75,7 @@ export namespace Components {
     'navItems': number;
     'rows': number;
     'template': string;
+    'title': boolean;
     'tools': number;
   }
   interface SsTopbarAttributes extends StencilHTMLAttributes {
@@ -83,6 +84,7 @@ export namespace Components {
     'navItems'?: number;
     'rows'?: number;
     'template'?: string;
+    'title'?: boolean;
     'tools'?: number;
   }
 }

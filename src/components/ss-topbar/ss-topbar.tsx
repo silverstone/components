@@ -11,6 +11,7 @@ export class Topbar {
   @Prop() cols: number = 3
   @Prop() template: string = "custom"
   @Prop() tools: number = 4
+  @Prop() title: boolean = true
   @Prop() nav: boolean = true
   @Prop() navItems: number = 4
 
@@ -58,13 +59,16 @@ export class Topbar {
                 <div class="topbar__col">
                   <slot name="row-1 col-2">
                     <div class="header__sheath">
-                      <slot name="header">
-                        <div class="header">
-                          <slot name="title">
-                            <span>Page Title</span>
+                      {this.title
+                        ? <slot name="header">
+                            <div class="header">
+                              <slot name="title">
+                                <span>Page Title</span>
+                              </slot>
+                            </div>
                           </slot>
-                        </div>
-                      </slot>
+                        : null
+                      }
                       {this.nav
                         ? <slot name="nav">
                             <div class="nav">
@@ -72,7 +76,13 @@ export class Topbar {
                                 {Array(this.navItems).fill(null).map((_, inavItems) => (
                                   <li>
                                     <slot name={"node-" + (inavItems + 1)}>
-                                      <div class="node"></div>
+                                      <div class="node">
+                                        <slot name="nav-node">
+                                        <a href="#">
+                                          Nav Node
+                                        </a>
+                                        </slot>
+                                      </div>
                                     </slot>
                                   </li>
                                 ))}

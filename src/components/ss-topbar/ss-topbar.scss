@@ -91,10 +91,52 @@
     .header {
       span {
         font-family: 'Verdana';
-        font-size: 14px;
-        font-weight: 600;
+        font-size: 16px;
+        font-weight: 300;
         letter-spacing: 1px;
         color: rgba(0,0,0,.54);
+      }
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+      margin: 0 48px;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0 8px;
+
+          .node {
+            display: flex;
+            
+            a {
+              text-decoration: none;
+              color: inherit;
+              font-size: 10px;
+              text-transform: uppercase;
+              font-family: 'Verdana';
+              font-weight: 600;
+              letter-spacing: 1px;
+              color: rgba(0,0,0,.26);
+              padding: 6px 12px;
+              background-color: #eee;
+              transition: all 200ms ease;
+
+              &:hover {
+                color: rgba(0,0,0,.87);
+              }
+            }
+          }
+        }
       }
     }
   }
