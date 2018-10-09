@@ -68,6 +68,48 @@ export namespace Components {
     'backdropCloseButton'?: boolean;
     'closeOutside'?: boolean;
   }
+
+  interface SsPopover {
+    'align': string;
+    'close': () => void;
+    'dismissable': boolean;
+    'margin': number;
+    'offsetX': number;
+    'offsetY': number;
+    'open': () => void;
+    'position': string;
+    'trigger': string;
+    'type': string;
+  }
+  interface SsPopoverAttributes extends StencilHTMLAttributes {
+    'align'?: string;
+    'dismissable'?: boolean;
+    'margin'?: number;
+    'offsetX'?: number;
+    'offsetY'?: number;
+    'position'?: string;
+    'trigger'?: string;
+    'type'?: string;
+  }
+
+  interface SsTopbar {
+    'cols': number;
+    'nav': boolean;
+    'navItems': number;
+    'rows': number;
+    'template': string;
+    'title': boolean;
+    'tools': number;
+  }
+  interface SsTopbarAttributes extends StencilHTMLAttributes {
+    'cols'?: number;
+    'nav'?: boolean;
+    'navItems'?: number;
+    'rows'?: number;
+    'template'?: string;
+    'title'?: boolean;
+    'tools'?: number;
+  }
 }
 
 declare global {
@@ -76,6 +118,8 @@ declare global {
     'SsButton': Components.SsButton;
     'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
+    'SsPopover': Components.SsPopover;
+    'SsTopbar': Components.SsTopbar;
   }
 
   interface StencilIntrinsicElements {
@@ -83,6 +127,8 @@ declare global {
     'ss-button': Components.SsButtonAttributes;
     'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
+    'ss-popover': Components.SsPopoverAttributes;
+    'ss-topbar': Components.SsTopbarAttributes;
   }
 
 
@@ -110,11 +156,25 @@ declare global {
     new (): HTMLSsModalElement;
   };
 
+  interface HTMLSsPopoverElement extends Components.SsPopover, HTMLStencilElement {}
+  var HTMLSsPopoverElement: {
+    prototype: HTMLSsPopoverElement;
+    new (): HTMLSsPopoverElement;
+  };
+
+  interface HTMLSsTopbarElement extends Components.SsTopbar, HTMLStencilElement {}
+  var HTMLSsTopbarElement: {
+    prototype: HTMLSsTopbarElement;
+    new (): HTMLSsTopbarElement;
+  };
+
   interface HTMLElementTagNameMap {
     'ss-backdrop': HTMLSsBackdropElement
     'ss-button': HTMLSsButtonElement
     'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
+    'ss-popover': HTMLSsPopoverElement
+    'ss-topbar': HTMLSsTopbarElement
   }
 
   interface ElementTagNameMap {
@@ -122,6 +182,8 @@ declare global {
     'ss-button': HTMLSsButtonElement;
     'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
+    'ss-popover': HTMLSsPopoverElement;
+    'ss-topbar': HTMLSsTopbarElement;
   }
 
 

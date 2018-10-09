@@ -1,0 +1,172 @@
+//Global Styles
+
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.topbar__sheath {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.topbar__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+}
+
+.topbar__col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+//Dashboard
+
+.topbar__sheath.dashboard {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  
+  .topbar__row {
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  slot[name=row-1] {
+    slot[name=col-1] {
+      .topbar__col {
+        width: 230px;
+      }
+    }
+    slot[name=col-2] {
+      .topbar__col {
+        flex: 1;
+      }
+    }
+    slot[name=col-3] {
+      .topbar__col {
+        flex: 0;
+      }
+    }
+  }
+
+  .logo__sheath {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      height: 48px;
+
+      span {
+        font-family: 'Verdana';
+        color: rgba(0,0,0,.54);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .header__sheath {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+
+    .header {
+      margin-right: 24px;
+      
+      span {
+        font-family: 'Verdana';
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        color: rgba(0,0,0,.54);
+      }
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100%;
+      margin: 0 24px;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 0 8px;
+
+          .node {
+            display: flex;
+            
+            a {
+              text-decoration: none;
+              color: inherit;
+              font-size: 10px;
+              text-transform: uppercase;
+              font-family: 'Verdana';
+              font-weight: 600;
+              letter-spacing: 1px;
+              color: rgba(0,0,0,.26);
+              padding: 6px 12px;
+              background-color: #eee;
+              transition: all 200ms ease;
+
+              &:hover {
+                color: rgba(0,0,0,.87);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .toolbar__sheath {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0 8px;
+
+        .tool {
+          width: 32px;
+          height: 32px;
+          background-color: #eee;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
