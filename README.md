@@ -1,6 +1,6 @@
 # Silverstone Components
 
-[![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg)](link to site)
+[![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg)](http://components.silverstone.io)
 
 General purpose web-components built in StencilJS
 
