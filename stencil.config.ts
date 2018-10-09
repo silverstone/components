@@ -3,6 +3,8 @@ import { sass } from '@stencil/sass'
 
 export const config: Config = {
   namespace: 'silverstone',
+  srcDir: 'src',
+  globalStyle: 'src/global/app.scss',
   outputTargets: [
     {
       type: 'dist'
@@ -13,6 +15,8 @@ export const config: Config = {
     }
   ],
   plugins: [
-    sass()
+    sass({injectGlobalPaths: [
+      'src/global/app.scss'
+    ]})
   ]
 }

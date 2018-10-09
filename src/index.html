@@ -14,66 +14,33 @@
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-
-    .header {
-      width: 100%;
-      height: 120px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 24px;
-    }
-
-    nav {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    li {
-      width: 24px;
-      height: 100%;
-      margin: 0 8px;
       background-color: #f1f1f1;
     }
-
     
   </style>
 </head>
 <body>
-  <div class="header">
-    <nav>
-      <ul>
-        <li><ss-popover id="pop1" align="right" position="top">
-          <div slot="content">
-            <div style="width: 400px; background-color: #eee; height: 400px;"></div>
-          </div>
-        </ss-popover></li>
-        <li><ss-popover id="pop2" align="right" position="bottom" offset-x="80">
-          <div slot="content">
-            <div style="width: 250px; background-color: #777; height: 300px;"></div>
-          </div>
-        </ss-popover></li>
-        <li><ss-popover id="pop3" align="right" position="bottom" offset-x="40">
-          <div slot="content">
-            <div style="width: 300px; background-color: #555; height: 400px;"></div>
-          </div>
-        </ss-popover></li>
-        <li><ss-popover id="pop4" align="right" position="bottom"></ss-popover></li>
-      </ul>
-    </nav>
-  </div>
+  <ss-topbar template="dashboard">
+    <div slot="tool-1">
+      <ss-popover align="right" offset-x="144">
+      </ss-popover>
+    </div>
+    <div slot="tool-2">
+      <ss-popover align="right" offset-x="96">
+      </ss-popover>
+    </div>
+    <div slot="tool-3">
+      <ss-popover align="right" offset-x="48">
+      </ss-popover>
+    </div>
+    <div slot="tool-4">
+      <ss-popover align="right">
+      </ss-popover>
+    </div>
+  </ss-topbar>
 
-  <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button>
+
+  <!-- <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button> -->
  
   <!-- <ss-modal close-outside="true" backdrop="false">
     <ss-button color="primary" type="flat" onclick="closeModal()">close</ss-button>
