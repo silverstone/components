@@ -11,7 +11,7 @@ export class Topbar {
   @Prop() cols: number = 3
   @Prop() template: string = "custom"
   @Prop() tools: number = 4
-  @Prop() title: boolean = true
+  @Prop() header: boolean = true
   @Prop() nav: boolean = false
   @Prop() navItems: number = 4
 
@@ -59,7 +59,7 @@ export class Topbar {
                 <div class="topbar__col">
                   <slot name="row-1 col-2">
                     <div class="header__sheath">
-                      {this.title
+                      {this.header
                         ? <slot name="header">
                             <div class="header">
                               <slot name="title">
