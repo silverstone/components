@@ -1,20 +1,9 @@
-:host {
-  display: flex;
-  height: 100%;
-}
-
-.container__has-sidebar {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
 .sidebar__sheath {
   display: flex;
   width: 100%;
   height: 100%;
   background-color: #fff;
+  background-color: #fbfcff;
   position: absolute;
   top: 0;
   bottom: 0;

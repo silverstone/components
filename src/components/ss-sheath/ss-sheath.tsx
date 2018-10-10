@@ -3,7 +3,7 @@ import { Component, Prop, State, Method, Element, Watch, Listen } from '@stencil
 @Component({
   tag: 'ss-sheath',
   styleUrl: 'ss-sheath.scss',
-  shadow: false
+  shadow: true
 })
 export class Sheath {
 

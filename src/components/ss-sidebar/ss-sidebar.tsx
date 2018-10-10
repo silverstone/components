@@ -3,7 +3,7 @@ import { Component, Prop, State, Method, Element, Event, EventEmitter } from '@s
 @Component({
   tag: 'ss-sidebar',
   styleUrl: 'ss-sidebar.scss',
-  shadow: false
+  shadow: true
 })
 export class Sidebar {
 
@@ -25,7 +25,7 @@ export class Sidebar {
   @Prop() width: number = 230
   
   @State() currentWidth: number
-  @State() opened: boolean = true
+  @State() opened: boolean = false
   
   componentWillLoad() {
 
@@ -37,6 +37,11 @@ export class Sidebar {
       } 
       if (this.mode=="push" && this.state=="opened" && this.position=="end") {
         this.isPushingEnd.emit(true)
+      }
+      if (this.state=="closed") {
+        this.opened = false
+      } else {
+        this.opened = true
       }
   }
 
