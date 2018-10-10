@@ -1,4 +1,5 @@
-import { storiesOf } from '@storybook/html'
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 import { withActions } from '@storybook/addon-actions'
 import { withKnobs, text, select } from '@storybook/addon-knobs'
 import { checkA11y } from '@storybook/addon-a11y'
@@ -12,9 +13,9 @@ storiesOf('Button', module)
       color: select('Color', ['plain', 'primary', 'secondary', 'danger'], 'plain'),
       text: text('Text', 'Click me'),
     }
-    return `
-      <ss-button type="${knobs.type}" color="${knobs.color}">
-        ${knobs.text}
+    return (
+      <ss-button type={knobs.type} color={knobs.color}>
+        {knobs.text}
       </ss-button>
-    `
+    )
   })
