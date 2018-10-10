@@ -1,5 +1,4 @@
 import { Component, Prop, State, Method, Element, Watch, Listen } from '@stencil/core';
-import { Sidebar } from '../ss-sidebar/ss-sidebar';
 
 @Component({
   tag: 'ss-sheath',
@@ -11,26 +10,40 @@ export class Sheath {
   @Element() el: HTMLElement
   sheathEl: HTMLElement
 
-  @State() sidebarOpened: boolean = false
-
-  sidebarEl: Sidebar
-
+  @State() sidebarOpened: boolean
+  @State() isPushingStart: boolean = false
+  @State() isPushingEnd: boolean = false
+  @State() pushWidth: number
   
 
   componentDidLoad() {
-    
   }
 
-  @Listen('isOpen')
-  isOpenHandler(event: CustomEvent) {
-    console.log('Received the custom isOpen event: ', event.detail);
-  }
+  @Listen('isPushingStart')
+  isPushingStartHandler(event: CustomEvent) {
+        this.isPushingStart = event.detail
+        console.log("pushing start is " + event.detail);
+    }
+
+  @Listen('isPushingEnd')
+  isPushingEndHandler(event: CustomEvent) {
+        this.isPushingEnd = event.detail
+        console.log("pushing end is " + event.detail);
+    }
+
+    @Listen('sidebarWidth')
+  sidebarWidthHandler(event: CustomEvent) {
+      if (event.detail) {
+        this.pushWidth = event.detail
+      }
+    }
 
   render() {
+    // console.log(this.isPushingStart, this.isPushingEnd)
     return ([
       <div 
-      id="ss-sheath"
       class={"sheath" + (this.sidebarOpened ? " push" : "")}
+      style={{"padding-left": (this.isPushingStart) ? `${this.pushWidth}px` : "", "padding-right": (this.isPushingEnd) ? `${this.pushWidth}px` : ""}}
       ref={(el: HTMLDivElement) => this.sheathEl = el}>
       <slot />
  `  </div>

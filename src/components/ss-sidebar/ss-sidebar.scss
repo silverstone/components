@@ -14,18 +14,30 @@
   display: flex;
   width: 100%;
   height: 100%;
-  max-width: 230px;
   background-color: #fff;
-  border-right: 1px solid #eee;
   position: absolute;
   top: 0;
   bottom: 0;
+  transition: all 200ms ease;
 
-  &.--start {
+  &.start {
     left: 0;
+    border-right: 1px solid #eee;
+    transform: translateX(-100%);
+
+
+    &.open {
+      transform: translateX(0%);
+    }
   }
 
-  &.--end {
+  &.end {
     right: 0;
+    border-left: 1px solid #eee;
+    transform: translateX(100%);
+
+    &.open {
+      transform: translateX(0%);
+    }
   }
 }

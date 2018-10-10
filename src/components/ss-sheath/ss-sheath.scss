@@ -3,13 +3,14 @@
 }
 
 .sheath {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  z-index: 1;
   position: relative;
-  width: 100%;
   height: 100%;
+  overflow: hidden;
+  transition: all 200ms ease;
 }
 
 .push {
-  padding-left: 230px;
+  // padding-left: 230px;
 }

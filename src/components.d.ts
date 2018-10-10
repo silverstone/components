@@ -97,16 +97,23 @@ export namespace Components {
 
   interface SsSidebar {
     'close': () => void;
+    'getSidebarWidth': () => void;
     'mode': string;
+    'name': string;
     'open': () => void;
     'position': string;
     'state': string;
+    'width': number;
   }
   interface SsSidebarAttributes extends StencilHTMLAttributes {
     'mode'?: string;
-    'onIsOpen'?: (event: CustomEvent) => void;
+    'name'?: string;
+    'onIsPushingEnd'?: (event: CustomEvent) => void;
+    'onIsPushingStart'?: (event: CustomEvent) => void;
+    'onSidebarWidth'?: (event: CustomEvent) => void;
     'position'?: string;
     'state'?: string;
+    'width'?: number;
   }
 
   interface SsTopbar {
