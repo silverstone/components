@@ -26,11 +26,13 @@ export namespace Components {
 
   interface SsButton {
     'color': 'plain' | 'primary' | 'secondary' | 'danger';
-    'type': 'basic' | 'raised' | 'outline' | 'flat';
+    'ripple': 'light' | 'dark';
+    'type': 'basic' | 'raised' | 'outline' | 'flat' | 'icon';
   }
   interface SsButtonAttributes extends StencilHTMLAttributes {
     'color'?: 'plain' | 'primary' | 'secondary' | 'danger';
-    'type'?: 'basic' | 'raised' | 'outline' | 'flat';
+    'ripple'?: 'light' | 'dark';
+    'type'?: 'basic' | 'raised' | 'outline' | 'flat' | 'icon';
   }
 
   interface SsInput {
@@ -122,6 +124,7 @@ export namespace Components {
     'nav': boolean;
     'navItems': number;
     'rows': number;
+    'sidebar': boolean;
     'template': string;
     'tools': number;
   }
@@ -131,6 +134,7 @@ export namespace Components {
     'nav'?: boolean;
     'navItems'?: number;
     'rows'?: number;
+    'sidebar'?: boolean;
     'template'?: string;
     'tools'?: number;
   }

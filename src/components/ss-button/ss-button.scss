@@ -14,6 +14,36 @@ button {
   font-size: 14px;
   position: relative;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    .ripple {
+      // animation-fill-mode: forwards;
+    }
+  }
+
+  &.light {
+    .ripple {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  &.dark {
+    .ripple {
+      background-color: rgba(0,0,0,.2);
+    }
+  }
+}
+
+.icon {
+  padding: 0;
+  min-width: 0;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
 }
 
 .basic {
@@ -87,6 +117,7 @@ button {
   position: absolute;
   opacity: 1;
   animation: rippleDrop .4s linear;
+  
 }
 
 @keyframes rippleDrop {
