@@ -46,7 +46,7 @@ export class Sheath {
       style={{"padding-left": (this.isPushingStart) ? `${this.pushWidth}px` : "", "padding-right": (this.isPushingEnd) ? `${this.pushWidth}px` : ""}}
       ref={(el: HTMLDivElement) => this.sheathEl = el}>
       <slot />
- `  </div>
+      </div>
     ])
   }
 }

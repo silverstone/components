@@ -89,7 +89,6 @@ export class Sidebar {
       class={"sidebar__sheath" + (this.position=="end" ? " end" : " start") + (this.opened ? " open" : "")}
       ref={(el: HTMLDivElement) => this.sidebarEl = el}
       style={{"max-width": `${this.width}px`}}>
-
       </div>
     ])
   }
