@@ -67,7 +67,7 @@
     <ss-button color="primary" type="flat">Submit</ss-button>
   </div>
 
-  <ss-table columns="[{header: 'First Name', id: 'firstName'}]">
+  <ss-table show-checkboxes="true">
         
   </ss-table>
 
@@ -82,6 +82,16 @@
     function closeModal() {
       $('ss-modal').close()
     }
+
+    $('ss-table').columns = [
+      { id: 'firstName', header: 'First Name' },
+      { id: 'lastName', header: 'Last Name' }
+    ]
+
+    $('ss-table').data = [
+      { firstName: 'Michael', lastName: 'Auderer' },
+      { firstName: 'Royce', lastName: 'Shayegan' }
+    ]
   </script>
 
 </body>

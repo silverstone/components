@@ -93,12 +93,14 @@ export namespace Components {
   }
 
   interface SsTable {
-    'columns': any[];
+    'columns': { id: string, header: string }[];
     'data': any[];
+    'showCheckboxes': boolean;
   }
   interface SsTableAttributes extends StencilHTMLAttributes {
-    'columns'?: any[];
+    'columns'?: { id: string, header: string }[];
     'data'?: any[];
+    'showCheckboxes'?: boolean;
   }
 
   interface SsTopbar {

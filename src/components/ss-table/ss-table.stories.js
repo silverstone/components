@@ -1,4 +1,4 @@
-import React from '@storybook/react'
+import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withActions } from '@storybook/addon-actions'
 import { withKnobs, text, select, array } from '@storybook/addon-knobs'
