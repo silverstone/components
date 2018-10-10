@@ -69,6 +69,29 @@ export namespace Components {
     'closeOutside'?: boolean;
   }
 
+  interface SsPopover {
+    'align': string;
+    'close': () => void;
+    'dismissable': boolean;
+    'margin': number;
+    'offsetX': number;
+    'offsetY': number;
+    'open': () => void;
+    'position': string;
+    'trigger': string;
+    'type': string;
+  }
+  interface SsPopoverAttributes extends StencilHTMLAttributes {
+    'align'?: string;
+    'dismissable'?: boolean;
+    'margin'?: number;
+    'offsetX'?: number;
+    'offsetY'?: number;
+    'position'?: string;
+    'trigger'?: string;
+    'type'?: string;
+  }
+
   interface SsTable {
     'columns': any[];
     'data': any[];
@@ -76,6 +99,25 @@ export namespace Components {
   interface SsTableAttributes extends StencilHTMLAttributes {
     'columns'?: any[];
     'data'?: any[];
+  }
+
+  interface SsTopbar {
+    'cols': number;
+    'header': boolean;
+    'nav': boolean;
+    'navItems': number;
+    'rows': number;
+    'template': string;
+    'tools': number;
+  }
+  interface SsTopbarAttributes extends StencilHTMLAttributes {
+    'cols'?: number;
+    'header'?: boolean;
+    'nav'?: boolean;
+    'navItems'?: number;
+    'rows'?: number;
+    'template'?: string;
+    'tools'?: number;
   }
 }
 
@@ -85,7 +127,9 @@ declare global {
     'SsButton': Components.SsButton;
     'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
+    'SsPopover': Components.SsPopover;
     'SsTable': Components.SsTable;
+    'SsTopbar': Components.SsTopbar;
   }
 
   interface StencilIntrinsicElements {
@@ -93,7 +137,9 @@ declare global {
     'ss-button': Components.SsButtonAttributes;
     'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
+    'ss-popover': Components.SsPopoverAttributes;
     'ss-table': Components.SsTableAttributes;
+    'ss-topbar': Components.SsTopbarAttributes;
   }
 
 
@@ -121,10 +167,22 @@ declare global {
     new (): HTMLSsModalElement;
   };
 
+  interface HTMLSsPopoverElement extends Components.SsPopover, HTMLStencilElement {}
+  var HTMLSsPopoverElement: {
+    prototype: HTMLSsPopoverElement;
+    new (): HTMLSsPopoverElement;
+  };
+
   interface HTMLSsTableElement extends Components.SsTable, HTMLStencilElement {}
   var HTMLSsTableElement: {
     prototype: HTMLSsTableElement;
     new (): HTMLSsTableElement;
+  };
+
+  interface HTMLSsTopbarElement extends Components.SsTopbar, HTMLStencilElement {}
+  var HTMLSsTopbarElement: {
+    prototype: HTMLSsTopbarElement;
+    new (): HTMLSsTopbarElement;
   };
 
   interface HTMLElementTagNameMap {
@@ -132,7 +190,9 @@ declare global {
     'ss-button': HTMLSsButtonElement
     'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
+    'ss-popover': HTMLSsPopoverElement
     'ss-table': HTMLSsTableElement
+    'ss-topbar': HTMLSsTopbarElement
   }
 
   interface ElementTagNameMap {
@@ -140,7 +200,9 @@ declare global {
     'ss-button': HTMLSsButtonElement;
     'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
+    'ss-popover': HTMLSsPopoverElement;
     'ss-table': HTMLSsTableElement;
+    'ss-topbar': HTMLSsTopbarElement;
   }
 
 
