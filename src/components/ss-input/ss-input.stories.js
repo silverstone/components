@@ -1,4 +1,5 @@
-import { storiesOf } from '@storybook/html'
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 import { withActions } from '@storybook/addon-actions'
 import { withKnobs, text, select, array } from '@storybook/addon-knobs'
 import { checkA11y } from '@storybook/addon-a11y'
@@ -12,12 +13,12 @@ storiesOf('Input', module)
       type: select('Type', ['text', 'email', 'textarea', 'select'], 'text'),
       options: array('Options', ['Option 1', 'Option 2']),
     }
-    return `
+    return (
       <ss-input
-        placeholder="${knobs.type !== 'select' ? knobs.placeholder : ''}"
-        type="${knobs.type}"
+        placeholder={knobs.type !== 'select' ? knobs.placeholder : ''}
+        type={knobs.type}
       >
-        ${knobs.options.map(option => `<option>${option}</option>`)}
+        {knobs.options.map(o => <option>{o}</option>)}
       </ss-input>
-    `
+    )
   })
