@@ -94,6 +94,9 @@ export namespace Components {
     'type'?: string;
   }
 
+  interface SsRipple {}
+  interface SsRippleAttributes extends StencilHTMLAttributes {}
+
   interface SsSheath {}
   interface SsSheathAttributes extends StencilHTMLAttributes {}
 
@@ -147,6 +150,7 @@ declare global {
     'SsInput': Components.SsInput;
     'SsModal': Components.SsModal;
     'SsPopover': Components.SsPopover;
+    'SsRipple': Components.SsRipple;
     'SsSheath': Components.SsSheath;
     'SsSidebar': Components.SsSidebar;
     'SsTopbar': Components.SsTopbar;
@@ -158,6 +162,7 @@ declare global {
     'ss-input': Components.SsInputAttributes;
     'ss-modal': Components.SsModalAttributes;
     'ss-popover': Components.SsPopoverAttributes;
+    'ss-ripple': Components.SsRippleAttributes;
     'ss-sheath': Components.SsSheathAttributes;
     'ss-sidebar': Components.SsSidebarAttributes;
     'ss-topbar': Components.SsTopbarAttributes;
@@ -194,6 +199,12 @@ declare global {
     new (): HTMLSsPopoverElement;
   };
 
+  interface HTMLSsRippleElement extends Components.SsRipple, HTMLStencilElement {}
+  var HTMLSsRippleElement: {
+    prototype: HTMLSsRippleElement;
+    new (): HTMLSsRippleElement;
+  };
+
   interface HTMLSsSheathElement extends Components.SsSheath, HTMLStencilElement {}
   var HTMLSsSheathElement: {
     prototype: HTMLSsSheathElement;
@@ -218,6 +229,7 @@ declare global {
     'ss-input': HTMLSsInputElement
     'ss-modal': HTMLSsModalElement
     'ss-popover': HTMLSsPopoverElement
+    'ss-ripple': HTMLSsRippleElement
     'ss-sheath': HTMLSsSheathElement
     'ss-sidebar': HTMLSsSidebarElement
     'ss-topbar': HTMLSsTopbarElement
@@ -229,6 +241,7 @@ declare global {
     'ss-input': HTMLSsInputElement;
     'ss-modal': HTMLSsModalElement;
     'ss-popover': HTMLSsPopoverElement;
+    'ss-ripple': HTMLSsRippleElement;
     'ss-sheath': HTMLSsSheathElement;
     'ss-sidebar': HTMLSsSidebarElement;
     'ss-topbar': HTMLSsTopbarElement;
