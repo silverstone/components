@@ -39,7 +39,7 @@ export class Topbar {
     } 
     //Dashboard
     if (this.template=="dashboard") {
-      return ([
+      return (
         <div class="topbar__sheath dashboard">
           <slot name="row-1">
             <div class="topbar__row">
@@ -126,7 +126,7 @@ export class Topbar {
             </div>
           </slot>
         </div>
-      ])
+      )
     }
   }
 }
