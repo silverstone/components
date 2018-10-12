@@ -5,3 +5,5 @@ www
 .storybook-build
 
 node_modules
+
+src/components.d.ts
