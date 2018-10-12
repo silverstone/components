@@ -13,7 +13,7 @@ export class ButtonComponent {
 
   @State() ripples: JSX.Element[] = []
   @State() rippleExpanded: boolean = false
-  @State() rippleFadeout: boolean = false
+  @State() rippleFadeOut: boolean 
   @State() rippleEnd: boolean = false
 
   @Element() el: HTMLElement
@@ -28,7 +28,9 @@ export class ButtonComponent {
 
   @Listen('isRippleFadeOut')
   isRippleFadeOutHandler(event: CustomEvent) {
-    this.rippleFadeout = event.detail
+    console.log("this ripple is done fading out" + event.detail)
+    this.rippleFadeOut = (event.detail)
+    
   }
 
   offset(el) {
@@ -36,6 +38,13 @@ export class ButtonComponent {
     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+  }
+
+  componentWillUpdate() {
+    if (this.rippleEl && this.rippleFadeOut) {
+      console.log("theres a ripple here and its done")
+      this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
+    }
   }
 
   handleMouseDown = (event) => {
@@ -67,7 +76,9 @@ export class ButtonComponent {
     if (this.rippleEl) {
       this.rippleEl.style.transition = "all 1000ms ease"
       this.rippleEl.style.opacity = "0"
-    }
+    } 
+
+   
     
     // if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
     //   this.rippleEl.style.opacity = "0"
