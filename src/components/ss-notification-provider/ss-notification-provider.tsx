@@ -1,5 +1,5 @@
 import { Component, Prop, Method, State } from '@stencil/core'
-
+import Fragment from 'stencil-fragment'
 
 @Component({
   tag: 'ss-notification-provider',
@@ -16,8 +16,8 @@ export class NotificationProvider {
     this.notifications.push(options)
   }
 
-  render() {
-    <div>
+  render = () => {
+    <Fragment>
       <div class="notification-wrapper">
         {this.notifications.map(note =>
           <div class="notification">
@@ -31,6 +31,6 @@ export class NotificationProvider {
         )}
       </div>
       <slot />
-    </div>
+    </Fragment>
   }
 }
