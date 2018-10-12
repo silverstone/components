@@ -7,7 +7,7 @@ import { Component, Prop, Element, State, Listen, Event, EventEmitter } from '@s
 })
 export class RippleComponent {
 
-  @State() rippleExpanded: Boolean
+  @State() rippleExpanded: Boolean = false
   @State() rippleFadeOut: Boolean = false
 
   @Element() el: HTMLElement
