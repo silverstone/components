@@ -41,14 +41,10 @@ export class ButtonComponent {
   }
 
   componentWillUpdate() {
-    if (this.rippleEl && this.rippleFadeOut && this.rippleContainerEl.childNodes.length > 20) {
-      console.log(this.rippleContainerEl.childNodes.length)
-      setTimeout(() => {
-        while (this.rippleContainerEl.firstElementChild && this.rippleContainerEl.childNodes.length > 10) {
-          this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild);
-        }
-      }, 1000)
-        
+    if (this.rippleEl && this.rippleFadeOut && this.rippleContainerEl.childNodes.length > 10) {
+      while (this.rippleContainerEl.firstElementChild && this.rippleContainerEl.childNodes.length > 5) {
+        this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild);
+      }
     }
   }
 
@@ -85,40 +81,6 @@ export class ButtonComponent {
       this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
     }
   }
-
-   
-    
-    // if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
-    //   this.rippleEl.style.opacity = "0"
-    //   this.rippleEl.addEventListener('transitionend', () => {
-    //     console.log("opacity out")
-    //     this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
-    //   })
-    // }
-
-    // console.log(this.rippleContainerEl.childNodes)
-    // if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
-    //   this.rippleEl.style.opacity = "0"
-    //   setTimeout(() => {
-    //   this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
-    //   }, 600);
-    // }
-
-
-    // if(this.rippleEnd && this.rippleContainerEl.hasChildNodes() ) {
-    //   this.rippleEl.style.opacity = "0"
-    //   setTimeout(() => {
-    //     this.rippleContainerEl.removeChild(this.rippleContainerEl.firstChild);
-    //   }, 1000);
-    // } else if (this.rippleEnd) {
-    //   setTimeout(() => {
-    //     this.rippleEl.style.opacity = "0"
-    //   }, 600);
-    // } else {
-    //   setTimeout(() => {
-    //     this.rippleEl.style.opacity = "0"
-    //   }, 600);
-    // }
    
   render() {
     return (
