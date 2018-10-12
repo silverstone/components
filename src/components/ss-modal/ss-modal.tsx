@@ -1,5 +1,6 @@
 import { Component, Prop, State, Method, Listen } from '@stencil/core'
 import { Backdrop } from '../ss-backdrop/ss-backdrop';
+import Fragment from 'stencil-fragment'
 
 @Component({
   tag: 'ss-modal',
@@ -28,22 +29,24 @@ export class Modal {
   }
 
   render() {
-    return ([
-      <ss-backdrop 
-        show={this.show}
-        invisible={!this.backdrop}
-        close-button={this.backdropCloseButton}
-        onClick={() => this.closeOutside && this.close()}
-      >
-        <slot name="backdrop-close-button">
-          X
-        </slot>
-      </ss-backdrop>,
-      <div class={"modal" + (this.show ? " show" : "")}>
-        <slot name="title" />
-        <hr />
-        <slot />
-      </div>
-    ])
+    return (
+      <Fragment>
+        <ss-backdrop 
+          show={this.show}
+          invisible={!this.backdrop}
+          close-button={this.backdropCloseButton}
+          onClick={() => this.closeOutside && this.close()}
+        >
+          <slot name="backdrop-close-button">
+            X
+          </slot>
+        </ss-backdrop>
+        <div class={"modal" + (this.show ? " show" : "")}>
+          <slot name="title" />
+          <hr />
+          <slot />
+        </div>
+      </Fragment>
+    )
   }
 }

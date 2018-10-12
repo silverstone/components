@@ -10,6 +10,7 @@ export class Topbar {
   @Prop() rows: number = 1
   @Prop() cols: number = 3
   @Prop() template: string = "custom"
+  @Prop() sidebar: boolean = true
   @Prop() tools: number = 4
   @Prop() header: boolean = true
   @Prop() nav: boolean = false
@@ -38,13 +39,18 @@ export class Topbar {
     } 
     //Dashboard
     if (this.template=="dashboard") {
-      return ([
+      return (
         <div class="topbar__sheath dashboard">
           <slot name="row-1">
             <div class="topbar__row">
               <slot name="col-1">
                 <div class="topbar__col">
                   <slot name="row-1 col-1">
+                    <div class="sidebar-button__sheath">
+                      <slot name="sidebar-button">
+                        
+                      </slot>
+                    </div>
                     <div class="logo__sheath">
                       <slot name="logo">
                         <div class="logo">
@@ -120,7 +126,7 @@ export class Topbar {
             </div>
           </slot>
         </div>
-      ])
+      )
     }
   }
 }
