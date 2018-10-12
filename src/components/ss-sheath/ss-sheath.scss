@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sheath {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  z-index: 1;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
