@@ -37,12 +37,4 @@ export class RippleComponent {
       this.isRippleFadeOut.emit(true)
     })
   }
-
-
-
-  // render() {
-  //   return (
-  //     // <div class="ripple"></div>
-  //   )
-  // }
 }

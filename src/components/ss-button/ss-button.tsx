@@ -41,9 +41,14 @@ export class ButtonComponent {
   }
 
   componentWillUpdate() {
-    if (this.rippleEl && this.rippleFadeOut) {
-      console.log("theres a ripple here and its done")
-      this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
+    if (this.rippleEl && this.rippleFadeOut && this.rippleContainerEl.childNodes.length > 20) {
+      console.log(this.rippleContainerEl.childNodes.length)
+      setTimeout(() => {
+        while (this.rippleContainerEl.firstElementChild && this.rippleContainerEl.childNodes.length > 10) {
+          this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild);
+        }
+      }, 1000)
+        
     }
   }
 
@@ -76,7 +81,10 @@ export class ButtonComponent {
     if (this.rippleEl) {
       this.rippleEl.style.transition = "all 1000ms ease"
       this.rippleEl.style.opacity = "0"
-    } 
+    } else if (this.rippleEl && this.rippleFadeOut) {
+      this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
+    }
+  }
 
    
     
@@ -111,10 +119,7 @@ export class ButtonComponent {
     //     this.rippleEl.style.opacity = "0"
     //   }, 600);
     // }
-   }
-
-  
-
+   
   render() {
     return (
       <button 
