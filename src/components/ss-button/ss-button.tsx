@@ -115,7 +115,7 @@ export class ButtonComponent {
       onMouseLeave={this.handleMouseUp}
       onMouseUp={this.handleMouseUp}>
         <div 
-        ref={(el: HTMLDivElement) => this.rippleContainerEl = el}
+        ref={(el: HTMLElement) => this.rippleContainerEl = el}
         class="ripple__container">
           {...this.ripples}
         </div>
