@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State, Method } from '@stencil/core'
+import { Component, Prop, Element, State, Method, Event, Listen, EventEmitter } from '@stencil/core'
 
 @Component({
   tag: 'ss-button',
@@ -20,12 +20,23 @@ export class ButtonComponent {
   @State() rippleY: number
   @State() rippleTop: number
   @State() rippleLeft: number
-  @State() rippleEnd: boolean = false
+  @State() rippleEnd: boolean
 
   @Element() el: HTMLElement
   buttonEl: HTMLElement
   rippleContainerEl: HTMLElement
   rippleEl: HTMLElement
+
+  @Listen('isRippleExpanded')
+  isRippleExpandedHandler(event: CustomEvent) {
+    console.log("THE BUTTON IS ISRIPPLEEXPANDED " + event.detail)
+  }
+
+  @Listen('isRippleFadeOut')
+  isRippleFadeOutHandler(event: CustomEvent) {
+    console.log("THE BUTTON IS ISRIPPLEFADEOUT " + event.detail)
+  }
+
 
   offset(el) {
     var rect = el.getBoundingClientRect(),
@@ -48,35 +59,38 @@ export class ButtonComponent {
     
   }
 
+
   componentDidUpdate() {
 
-    const lastRipple = this.ripples.length - 1
-    this.rippleEl = (this.ripples[lastRipple] as any).elm
-    console.log(this.rippleEl, "did update")
+    // const lastRipple = this.ripples.length - 1
+    // this.rippleEl = (this.ripples[lastRipple] as any).elm
+    // console.log(this.rippleEl, "did update")
 
-    this.rippleEl.style.width = this.rippleSize + 'px'
-    this.rippleEl.style.height = this.rippleSize + 'px'
-    this.rippleEl.style.top = this.rippleY + 'px'
-    this.rippleEl.style.left = this.rippleX + 'px'
+    // this.rippleEl.style.width = this.rippleSize + 'px'
+    // this.rippleEl.style.height = this.rippleSize + 'px'
+    // this.rippleEl.style.top = this.rippleY + 'px'
+    // this.rippleEl.style.left = this.rippleX + 'px'
     
     setTimeout(() => {
-      this.rippleEl.style.transform = "scale(2)"
-      this.rippleEl.addEventListener('transitionend', () => {
-        this.rippleEnd = true
-        console.log(this.rippleEnd)
-      }, true)
+      // this.rippleEl.style.transform = "scale(2)"
+      // this.rippleEl.addEventListener('transitionend', () => {
+      //   this.rippleEnd = true
+      //   // console.log(this.rippleEnd)
+      // }, true)
     }, 1);
     
   }
 
   handleMouseUp = (event) => {
-    if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
-      this.rippleEl.style.opacity = "0"
-      this.rippleEl.addEventListener('transitionend', () => {
-        console.log("opacity out")
-        this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
-      })
-    }
+    this.rippleEl.style.transition = "all 600ms ease"
+    this.rippleEl.style.opacity = "0"
+    // if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
+    //   this.rippleEl.style.opacity = "0"
+    //   this.rippleEl.addEventListener('transitionend', () => {
+    //     console.log("opacity out")
+    //     this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
+    //   })
+    // }
 
     // console.log(this.rippleContainerEl.childNodes)
     // if (this.rippleEnd && this.rippleContainerEl.hasChildNodes()) {
@@ -104,30 +118,32 @@ export class ButtonComponent {
    }
 
   handleMouseDown = (event) => {
-    this.buttonOffset = this.offset(this.buttonEl)
+
+    
+    var buttonOffset = this.offset(this.buttonEl)
     this.offset(this.buttonEl);
     const { offsetWidth, offsetHeight } = this.buttonEl
   
-    this.rippleSize
+    var rippleSize
     if (offsetWidth > offsetHeight) {
-      this.rippleSize = offsetWidth
+      rippleSize = offsetWidth
     } else {
-      this.rippleSize = offsetHeight
-    }
-
-    const rippleStyles = {
-      width: this.rippleSize + 'px',
-      height: this.rippleSize + 'px',
-      top: this.rippleY + 'px',
-      left: this.rippleX + 'px'
+      rippleSize = offsetHeight
     }
   
-    this.rippleX = event.pageX - this.buttonOffset.left - this.rippleSize / 2
-    this.rippleY = event.pageY - this.buttonOffset.top - this.rippleSize / 2
+    var rippleX = event.pageX - buttonOffset.left - rippleSize / 2
+    var rippleY = event.pageY - buttonOffset.top - rippleSize / 2
+
+    const rippleStyles = {
+      width: rippleSize + 'px',
+      height: rippleSize + 'px',
+      top: rippleY + 'px',
+      left: rippleX + 'px'
+    }
+
+    this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={rippleStyles} ref={(el: HTMLDivElement) => this.rippleEl = el}/>)]
 
     
-
-    this.ripples = [...this.ripples, (<div class="ripple" style={rippleStyles} />)]
 
   }
 

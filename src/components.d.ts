@@ -95,7 +95,10 @@ export namespace Components {
   }
 
   interface SsRipple {}
-  interface SsRippleAttributes extends StencilHTMLAttributes {}
+  interface SsRippleAttributes extends StencilHTMLAttributes {
+    'onIsRippleExpanded'?: (event: CustomEvent) => void;
+    'onIsRippleFadeOut'?: (event: CustomEvent) => void;
+  }
 
   interface SsSheath {}
   interface SsSheathAttributes extends StencilHTMLAttributes {}
