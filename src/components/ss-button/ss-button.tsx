@@ -23,13 +23,11 @@ export class ButtonComponent {
 
   @Listen('isRippleExpanded')
   isRippleExpandedHandler(event: CustomEvent) {
-    console.log("THE BUTTON IS ISRIPPLEEXPANDED " + event.detail)
     this.rippleExpanded = (event.detail)
   }
 
   @Listen('isRippleFadeOut')
   isRippleFadeOutHandler(event: CustomEvent) {
-    console.log("THE BUTTON IS ISRIPPLEFADEOUT " + event.detail)
     this.rippleFadeout = event.detail
   }
 
