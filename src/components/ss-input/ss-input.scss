@@ -1,6 +1,10 @@
 $border-color: #cacaca;
 $error-border-color: #ff3333;
 
+:host {
+  display: inline-flex;
+}
+
 .wrapper {
   position: relative;
   display: inline-block;
@@ -102,4 +106,9 @@ input.input-control {
 .append {
   border-radius: 0 4px 4px 0;
   border-left: 0;
+}
+
+.error {
+  margin: 8px 8px 0;
+  font-size: 12px;
 }
