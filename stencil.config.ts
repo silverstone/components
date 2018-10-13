@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass'
 
 export const config: Config = {
   namespace: 'silverstone',
+  enableCache: false,
   srcDir: 'src',
   globalStyle: 'src/global/app.scss',
   outputTargets: [
