@@ -46,7 +46,7 @@ $error-border-color: #ff3333;
     font-size: 11px;
   }
 
-  &:invalid {
+  &:invalid:not(:focus) {
     border-color: $error-border-color;
   }
 }
