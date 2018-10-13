@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State, Listen, Event, EventEmitter } from '@stencil/core'
+import { Component, Element, State, Event, EventEmitter } from '@stencil/core'
 
 @Component({
   tag: 'ss-ripple',
