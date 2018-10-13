@@ -46,6 +46,7 @@ export class Topbar {
               <slot name="col-1">
                 <div class="topbar__col">
                   <slot name="row-1 col-1">
+                    <div class="topbar__row">
                     <div class="sidebar-button__sheath">
                       <slot name="sidebar-button">
                         
@@ -57,6 +58,7 @@ export class Topbar {
                           <span>Logo</span>
                         </div>
                       </slot>
+                    </div>
                     </div>
                   </slot>
                 </div>

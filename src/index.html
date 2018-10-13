@@ -11,6 +11,13 @@
 </head>
 <body>
   <ss-topbar nav template="dashboard">
+    <div slot="sidebar-button">
+      <ss-button type="icon" ripple="dark" onclick="openLeftSidebar()">
+        <i class="material-icons" style="color: rgba(0,0,0,.54)">
+        menu
+        </i>
+      </ss-button>
+    </div>
     <div slot="tool-1">
       <ss-popover align="right" offset-x="144">
       </ss-popover>
@@ -33,7 +40,7 @@
 
     </ss-sidebar>
 
-    <ss-sidebar id="right-sidebar" position="end" state="closed">
+    <ss-sidebar id="right-sidebar" position="end" state="closed" mode="over" backdrop="false">
 
     </ss-sidebar>
 
