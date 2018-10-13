@@ -6,18 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Silverstone Components</title>
   <script src="/build/silverstone.js"></script>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #f1f1f1;
-    }
-    
-  </style>
+  <link rel="stylesheet" href="/build/silverstone.css">
 </head>
 <body>
   <ss-topbar nav template="dashboard">
@@ -38,6 +27,10 @@
       </ss-popover>
     </div>
   </ss-topbar>
+  <ss-sheath>
+    <ss-sidebar>
+
+    </ss-sidebar>
 
 
   <!-- <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button> -->
@@ -66,7 +59,7 @@
     </div>
     <ss-button color="primary" type="flat">Submit</ss-button>
   </div>
-
+</ss-sheath>
 
   <script>
     const $ = (selector) => document.querySelector(selector)
