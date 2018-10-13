@@ -3,7 +3,8 @@ $default-secondary-color: #ffb944;
 $default-danger-color: #f54e71;
 
 :host {
-  position: absolute;
+  position: relative;
+  display: inline-flex;
 }
 
 button {
@@ -22,18 +23,26 @@ button {
 
   &.light {
     .ripple {
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(255, 255, 255, 0.2);
     }
   }
 
   &.dark {
     .ripple {
-      background-color: rgba(0,0,0,.2);
+      background-color: rgba(0,0,0,.1);
     }
   }
 }
 
 .icon {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  user-select: none;
   padding: 0;
   min-width: 0;
   width: 40px;
@@ -42,6 +51,11 @@ button {
   line-height: 40px;
   border-radius: 50%;
   background-color: transparent;
+
+  span {
+    display: inline-flex;
+    vertical-align: middle;
+  }
 }
 
 .basic {
@@ -108,10 +122,19 @@ button {
   }
 }
 
+.ripple__container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+}
+
 
 .ripple {
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   position: absolute;
   pointer-events: none;
   transition: all 450ms cubic-bezier(0,0,.2,1);

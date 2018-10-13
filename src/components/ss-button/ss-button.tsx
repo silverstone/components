@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State, Method, Event, Listen, EventEmitter } from '@stencil/core'
+import { Component, Prop, Element, State, Listen } from '@stencil/core'
 
 @Component({
   tag: 'ss-button',
@@ -58,6 +58,8 @@ export class ButtonComponent {
     
       const rippleX = event.pageX - offsetLeft - rippleSize / 2
       const rippleY = event.pageY - offsetTop - rippleSize / 2
+      const centerX = offsetWidth / 2 - rippleSize / 2
+      const centerY = offsetHeight / 2 - rippleSize / 2
 
       const rippleStyles = {
         width: rippleSize + 'px',
@@ -66,8 +68,16 @@ export class ButtonComponent {
         left: rippleX + 'px'
       }
 
-      this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={rippleStyles}
+      const iconRippleStyles = {
+        width: rippleSize + 'px',
+        height: rippleSize + 'px',
+        top: centerY + 'px',
+        left: centerX + 'px'
+      }
+      
+      this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={(this.type=="icon") ? iconRippleStyles : rippleStyles}
       ref={(el: HTMLButtonElement) => this.rippleEl = el} />)]
+
 
       } else if (this.isMouseDown && rightMouseDown){
         this.fadeOutRipple(event)
@@ -79,8 +89,15 @@ export class ButtonComponent {
     const ripple: any = this.ripples[this.ripples.length - 1]
     if (this.isMouseDown && ripple.elm) {
       this.isMouseDown = false
-      ripple.elm.style.transition = "all 1000ms ease"
-      ripple.elm.style.opacity = "0"
+      if (this.type=="icon") {
+        setTimeout(() => {
+          ripple.elm.style.transition = "all 600ms ease"
+          ripple.elm.style.opacity = "0"
+        }, 450);
+      } else {
+          ripple.elm.style.transition = "all 600ms ease"
+          ripple.elm.style.opacity = "0"
+      }
     } 
   }
 
@@ -97,8 +114,9 @@ export class ButtonComponent {
         class="ripple__container">
           {...this.ripples}
         </div>
-        
-        <slot />
+        <span>
+          <slot />
+        </span>
       </button>
     )
   }
