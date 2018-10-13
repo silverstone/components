@@ -29,12 +29,16 @@
     </div>
   </ss-topbar>
   <ss-sheath>
-    <ss-sidebar>
+    <ss-sidebar id="left-sidebar">
+
+    </ss-sidebar>
+
+    <ss-sidebar id="right-sidebar" position="end" state="closed">
 
     </ss-sidebar>
 
 
-  <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button>
+  
  
   <ss-modal close-outside="true" backdrop="true">
     <ss-button color="primary" type="flat" onclick="closeModal()">close</ss-button>
@@ -65,9 +69,13 @@
         </i>
       </ss-button>
   </div>
-  <div style="display:flex; justify-content: flex-start; align-items: center;">
-    <ss-button onclick="openLeftSidebar()">Open Left Sidebar</ss-button>
-    <ss-button onclick="openRightSidebar()">Open Left Sidebar</ss-button>
+  <div class="block">
+    <ss-button onclick="openLeftSidebar()">Toggle Left Sidebar</ss-button>
+    <ss-button onclick="openRightSidebar()">Toggle Right Sidebar</ss-button>
+  </div>
+
+  <div class="block">
+    <ss-button color="primary" type="raised" onclick="openModal()">Open Modal</ss-button>
   </div>
 
 </ss-sheath>
@@ -81,6 +89,14 @@
 
     function closeModal() {
       $('ss-modal').close()
+    }
+
+    function openLeftSidebar() {
+      $('#left-sidebar').open()
+    }
+
+    function openRightSidebar() {
+      $('#right-sidebar').open()
     }
   </script>
 
