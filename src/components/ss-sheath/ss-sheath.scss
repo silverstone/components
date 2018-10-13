@@ -5,9 +5,7 @@
 }
 
 .sheath {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  display: block;
   z-index: 1;
   position: relative;
   height: 100%;
