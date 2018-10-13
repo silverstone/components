@@ -7,34 +7,26 @@ import { Component, Prop, Element, State, Listen, Event, EventEmitter } from '@s
 })
 export class RippleComponent {
 
-  @State() rippleExpanded: Boolean
+  @State() rippleExpanded: Boolean = false
   @State() rippleFadeOut: Boolean = false
 
   @Element() el: HTMLElement
 
-  @Event() isRippleExpanded: EventEmitter
-  @Event() isRippleFadeOut: EventEmitter
-
-
-  componentWillLoad() {
-    this.rippleExpanded = false
-    this.rippleFadeOut = false
-    this.isRippleExpanded.emit(false)
-    this.isRippleFadeOut.emit(false)
-  }
+  @Event() rippleEnd: EventEmitter
 
   componentDidLoad() {
     this.el.style.transform = "scale(2)"
-    this.el.addEventListener('transitionend', () => {
-      this.rippleExpanded = true
-      this.isRippleExpanded.emit(true)
-    }, true)
   }
 
-  componentWillUpdate() {
-    this.el.addEventListener('transitionend', () => {
+  @Listen('transitionend')
+  handleTransitionEnd() {
+    if (!this.rippleExpanded) {
+      this.rippleExpanded = true
+    } else {
+      this.el.parentNode.removeChild(this.el)
       this.rippleFadeOut = true
-      this.isRippleFadeOut.emit(true)
-    })
+      this.rippleEnd.emit(true)
+      // console.log(this.rippleFadeOut)
+    }
   }
 }

@@ -12,84 +12,86 @@ export class ButtonComponent {
   @Prop() ripple: 'light' | 'dark' = 'light'
 
   @State() ripples: JSX.Element[] = []
-  @State() rippleExpanded: boolean = false
-  @State() rippleFadeOut: boolean 
+  @State() rippleFadeOut: boolean = false
   @State() rippleEnd: boolean = false
+  @State() isMouseDown: boolean = false
 
   @Element() el: HTMLElement
   buttonEl: HTMLElement
-  rippleContainerEl: HTMLElement
   rippleEl: HTMLElement
-
-  @Listen('isRippleExpanded')
-  isRippleExpandedHandler(event: CustomEvent) {
-    this.rippleExpanded = (event.detail)
+  rippleContainerEl: HTMLElement
+  
+  @Listen('rippleEnd')
+  handleRippleEnd(event: CustomEvent) {
+    this.rippleEnd = event.detail
+    if (this.rippleEnd) {
+      this.ripples = this.ripples.slice(1)
+    }
   }
+  
+  handleMouseDown = (event) => {
+    let leftMouseDown = false
+    let rightMouseDown = false
 
-  @Listen('isRippleFadeOut')
-  isRippleFadeOutHandler(event: CustomEvent) {
-    console.log("this ripple is done fading out" + event.detail)
-    this.rippleFadeOut = (event.detail)
+    if (event.which == 0) {
+      leftMouseDown = true
+    } else if (event.which == 2) {
+      rightMouseDown = true
+    }
+
+    if (!this.isMouseDown && leftMouseDown && rightMouseDown) {
+      event.stopPropagation()
+      event.preventDefault()
+      return null
+    }
+
+    if (!this.isMouseDown) {
+
+      this.isMouseDown = true
+
+      const rect = this.buttonEl.getBoundingClientRect()
+      const offsetLeft = rect.left + (window.pageXOffset || document.documentElement.scrollLeft)
+      const offsetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop)
+      const { offsetWidth, offsetHeight } = this.buttonEl
     
-  }
+      const rippleSize = offsetWidth > offsetHeight ? offsetWidth : offsetHeight
+    
+      const rippleX = event.pageX - offsetLeft - rippleSize / 2
+      const rippleY = event.pageY - offsetTop - rippleSize / 2
 
-  offset(el) {
-    var rect = el.getBoundingClientRect(),
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-  }
+      const rippleStyles = {
+        width: rippleSize + 'px',
+        height: rippleSize + 'px',
+        top: rippleY + 'px',
+        left: rippleX + 'px'
+      }
 
-  componentWillUpdate() {
-    if (this.rippleEl && this.rippleFadeOut && this.rippleContainerEl.childNodes.length > 10) {
-      while (this.rippleContainerEl.firstElementChild && this.rippleContainerEl.childNodes.length > 5) {
-        this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild);
+      this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={rippleStyles}
+      ref={(el: HTMLButtonElement) => this.rippleEl = el} />)]
+
+      } else if (this.isMouseDown && rightMouseDown){
+        this.fadeOutRipple(event)
       }
     }
-  }
-
-  handleMouseDown = (event) => {
-    var buttonOffset = this.offset(this.buttonEl)
-    this.offset(this.buttonEl);
-    const { offsetWidth, offsetHeight } = this.buttonEl
   
-    var rippleSize
-    if (offsetWidth > offsetHeight) {
-      rippleSize = offsetWidth
-    } else {
-      rippleSize = offsetHeight
-    }
-  
-    var rippleX = event.pageX - buttonOffset.left - rippleSize / 2
-    var rippleY = event.pageY - buttonOffset.top - rippleSize / 2
 
-    const rippleStyles = {
-      width: rippleSize + 'px',
-      height: rippleSize + 'px',
-      top: rippleY + 'px',
-      left: rippleX + 'px'
-    }
-
-    this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={rippleStyles} ref={(el: HTMLDivElement) => this.rippleEl = el}/>)]
+  fadeOutRipple = (event) => {
+    const ripple: any = this.ripples[this.ripples.length - 1]
+    if (this.isMouseDown && ripple.elm) {
+      this.isMouseDown = false
+      ripple.elm.style.transition = "all 1000ms ease"
+      ripple.elm.style.opacity = "0"
+    } 
   }
 
-  handleMouseUp = (event) => {
-    if (this.rippleEl) {
-      this.rippleEl.style.transition = "all 1000ms ease"
-      this.rippleEl.style.opacity = "0"
-    } else if (this.rippleEl && this.rippleFadeOut) {
-      this.rippleContainerEl.removeChild(this.rippleContainerEl.firstElementChild)
-    }
-  }
-   
   render() {
     return (
       <button 
       ref={(el: HTMLButtonElement) => this.buttonEl = el}
       class={`${this.type} ${this.color} ${this.ripple}`}
       onMouseDown={this.handleMouseDown}
-      onMouseLeave={this.handleMouseUp}
-      onMouseUp={this.handleMouseUp}>
+      onMouseLeave={this.fadeOutRipple}
+      onMouseUp={this.fadeOutRipple}>
         <div 
         ref={(el: HTMLElement) => this.rippleContainerEl = el}
         class="ripple__container">
