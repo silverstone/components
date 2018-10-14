@@ -55,7 +55,7 @@ export class Topbar {
                     <div class="logo__sheath">
                       <slot name="logo">
                         <div class="logo">
-                          <span>Logo</span>
+                          <img src="/assets/ss-logo-1.png" alt="" />
                         </div>
                       </slot>
                     </div>
