@@ -45,6 +45,7 @@ export class Popover {
 				} else {
 					window.addEventListener('click', this.outsideClickListener)
 					this.popoverEl.addEventListener('click', this.popoverClickListener)
+					
 				}
 			}, 1)
 		}

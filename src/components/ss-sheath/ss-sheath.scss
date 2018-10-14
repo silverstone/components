@@ -4,11 +4,12 @@
   flex-direction: column;
 }
 
-.sheath {
+.sheath, .sheath-content {
   display: block;
   z-index: 1;
   position: relative;
   height: 100%;
   overflow: hidden;
   transition: all 200ms ease;
+  z-index: 1;
 }
