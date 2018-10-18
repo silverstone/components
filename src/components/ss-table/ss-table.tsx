@@ -60,7 +60,6 @@ export class TableComponent {
       selection.delete(index)
     }
     this.selection = selection
-    event.preventDefault()
   }
 
   toggleSelectAllRows(event) {
@@ -73,7 +72,6 @@ export class TableComponent {
       }
     }
     this.selection = selection
-    event.preventDefault()
   }
 
   areAllRowsChecked() {
