@@ -1,0 +1,50 @@
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transition: all 250ms ease;
+
+  li {
+    transition: all 250ms ease;
+    height: 48px;
+    a {
+      display: block;
+      padding: 0 20px;
+      color: #696969;
+      font-size: 1.077rem;
+      line-height: 38px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &.active {
+      a {
+        padding-left: 20px;
+        font-weight: 500;
+        color: #4285f4;
+      }
+    }
+  }
+
+  li.divider {
+    padding: 20px 20px 0;
+    color: #7b7b7b;
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .8462rem;
+  }
+}
+
+.child {
+  opacity: 0;
+  height: 0;
+}
+
+li.expanded {
+  .child {
+    opacity: 1;
+    height: auto;
+  }
+}
