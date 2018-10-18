@@ -88,8 +88,10 @@
     <ss-button color="primary" type="raised" onclick="openModal()">Open Modal</ss-button>
   </div>
 
-  <ss-table show-checkboxes="true">
-        
+  <ss-table checkboxes>
+    <th slot="firstName">First name</th>
+    <th slot="lastName">Last name</th>
+    <td slot="firstName"></td>
   </ss-table>
 
 </ss-sheath>
@@ -112,7 +114,8 @@
 
     $('ss-table').data = [
       { firstName: 'Michael', lastName: 'Auderer' },
-      { firstName: 'Royce', lastName: 'Shayegan' }
+      { firstName: 'Royce', lastName: 'Shayegan' },
+      { firstName: 'Ladies', lastName: 'Gentlemen' }
     ]
     
     function openLeftSidebar() {
