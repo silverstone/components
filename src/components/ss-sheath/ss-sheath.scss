@@ -10,6 +10,7 @@
   position: relative;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: all 200ms ease;
   z-index: 1;
 }
