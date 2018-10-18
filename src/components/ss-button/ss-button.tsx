@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State } from '@stencil/core'
+import { Component, Prop, Element, State, Listen } from '@stencil/core'
 
 @Component({
   tag: 'ss-button',
@@ -7,41 +7,116 @@ import { Component, Prop, Element, State } from '@stencil/core'
 })
 export class ButtonComponent {
 
-  @Prop() type: 'basic' | 'raised' | 'outline' | 'flat' = 'basic'
+  @Prop() type: 'basic' | 'raised' | 'outline' | 'flat' | 'icon' = 'basic'
   @Prop() color: 'plain' | 'primary' | 'secondary' | 'danger' = 'plain'
+  @Prop() ripple: 'light' | 'dark' = 'light'
 
   @State() ripples: JSX.Element[] = []
+  @State() rippleFadeOut: boolean = false
+  @State() rippleEnd: boolean = false
+  @State() isMouseDown: boolean = false
 
-  @Element() buttonEl: HTMLElement
+  @Element() el: HTMLElement
+  buttonEl: HTMLElement
+  rippleEl: HTMLElement
+  rippleContainerEl: HTMLElement
+  
+  @Listen('rippleEnd')
+  handleRippleEnd(event: CustomEvent) {
+    this.rippleEnd = event.detail
+    if (this.rippleEnd) {
+      this.ripples = this.ripples.slice(1)
+    }
+  }
+  
+  handleMouseDown = (event) => {
+    let leftMouseDown = false
+    let rightMouseDown = false
 
-  handleClick = (event) => {
-    let { offsetLeft, offsetTop, offsetWidth, offsetHeight } = this.buttonEl
-
-    let rippleSize
-    if (offsetWidth > offsetHeight) {
-      rippleSize = offsetWidth
-    } else {
-      rippleSize = offsetHeight
+    if (event.which == 0) {
+      leftMouseDown = true
+    } else if (event.which == 2) {
+      rightMouseDown = true
     }
 
-    const rippleX = event.pageX - offsetLeft - rippleSize / 2
-    const rippleY = event.pageY - offsetTop - rippleSize / 2
-
-    const rippleStyles = {
-      width: rippleSize + 'px',
-      height: rippleSize + 'px',
-      top: rippleY + 'px',
-      left: rippleX + 'px'
+    if (!this.isMouseDown && leftMouseDown && rightMouseDown) {
+      event.stopPropagation()
+      event.preventDefault()
+      return null
     }
 
-    this.ripples = [...this.ripples, (<span class="ripple" style={rippleStyles} />)]
+    if (!this.isMouseDown) {
+
+      this.isMouseDown = true
+
+      const rect = this.buttonEl.getBoundingClientRect()
+      const offsetLeft = rect.left + (window.pageXOffset || document.documentElement.scrollLeft)
+      const offsetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop)
+      const { offsetWidth, offsetHeight } = this.buttonEl
+    
+      const rippleSize = offsetWidth > offsetHeight ? offsetWidth : offsetHeight
+    
+      const rippleX = event.pageX - offsetLeft - rippleSize / 2
+      const rippleY = event.pageY - offsetTop - rippleSize / 2
+      const centerX = offsetWidth / 2 - rippleSize / 2
+      const centerY = offsetHeight / 2 - rippleSize / 2
+
+      const rippleStyles = {
+        width: rippleSize + 'px',
+        height: rippleSize + 'px',
+        top: rippleY + 'px',
+        left: rippleX + 'px'
+      }
+
+      const iconRippleStyles = {
+        width: rippleSize + 'px',
+        height: rippleSize + 'px',
+        top: centerY + 'px',
+        left: centerX + 'px'
+      }
+      
+      this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={(this.type=="icon") ? iconRippleStyles : rippleStyles}
+      ref={(el: HTMLButtonElement) => this.rippleEl = el} />)]
+
+
+      } else if (this.isMouseDown && rightMouseDown){
+        this.fadeOutRipple(event)
+      }
+    }
+  
+
+  fadeOutRipple = (event) => {
+    const ripple: any = this.ripples[this.ripples.length - 1]
+    if (this.isMouseDown && ripple.elm) {
+      this.isMouseDown = false
+      if (this.type=="icon") {
+        setTimeout(() => {
+          ripple.elm.style.transition = "all 600ms ease"
+          ripple.elm.style.opacity = "0"
+        }, 450);
+      } else {
+          ripple.elm.style.transition = "all 600ms ease"
+          ripple.elm.style.opacity = "0"
+      }
+    } 
   }
 
   render() {
     return (
-      <button class={`${this.type} ${this.color}`} onMouseDown={this.handleClick}>
-        {...this.ripples}
-        <slot />
+      <button 
+      ref={(el: HTMLButtonElement) => this.buttonEl = el}
+      class={`${this.type} ${this.color} ${this.ripple}`}
+      onMouseDown={this.handleMouseDown}
+      onMouseLeave={this.fadeOutRipple}
+      onMouseUp={this.fadeOutRipple}>
+        <div 
+        ref={(el: HTMLElement) => this.rippleContainerEl = el}
+        class="ripple__container">
+          {...this.ripples}
+        </div>
+        <span>
+          <slot />
+        </span>
       </button>
     )
   }

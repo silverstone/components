@@ -39,6 +39,7 @@
     "url": "git+https://github.com/silverstone/components.git"
   },
   "dependencies": {
-    "rollup-plugin-alias": "^1.4.0"
+    "rollup-plugin-alias": "^1.4.0",
+    "stencil-fragment": "^1.0.1"
   }
 }

@@ -4,6 +4,7 @@ import alias from 'rollup-plugin-alias'
 
 export const config: Config = {
   namespace: 'silverstone',
+  enableCache: false,
   srcDir: 'src',
   globalStyle: 'src/global/app.scss',
   outputTargets: [
