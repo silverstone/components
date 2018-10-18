@@ -81,7 +81,6 @@ export class TableComponent {
   }
 
   render() {
-    console.log(this.selection)
     return (
       <Table>
         <Head>
