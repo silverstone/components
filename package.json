@@ -37,5 +37,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/silverstone/components.git"
+  },
+  "dependencies": {
+    "rollup-plugin-alias": "^1.4.0"
   }
 }
