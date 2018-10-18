@@ -1,4 +1,5 @@
-import { Component, Prop, State, Method, Element, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, State, Method, Element, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+
 
 @Component({
   tag: 'ss-sidebar',
@@ -12,38 +13,43 @@ export class Sidebar {
 
   @Event() isPushingStart: EventEmitter;
   @Event() isPushingEnd: EventEmitter;
+  @Event() isDismissable: EventEmitter;
+  @Event() hasBackdrop: EventEmitter;
   @Event() sidebarWidth: EventEmitter;
-    sidebarWidthHandler(sidebarWidth: Number) {
-      this.isPushingStart.emit(sidebarWidth);
-      this.isPushingEnd.emit(sidebarWidth);
-    }
-
+  
   @Prop() name: string
   @Prop() position: string = "start"
   @Prop() state: string = "opened"
+  @Prop({ reflectToAttr: true, mutable: true }) over: boolean = false
   @Prop() mode: string = "push"
   @Prop() width: number = 230
+  @Prop() backdrop: boolean = true 
+  @Prop({ reflectToAttr: true, mutable: true}) dismissable: boolean = false
+  @Prop({ reflectToAttr: true, mutable: true }) opened = false
   
   @State() currentWidth: number
-  @State() opened: boolean = false
   
-  componentWillLoad() {
-
-  }
   componentDidLoad() {
     this.getSidebarWidth()
-      if (this.mode=="push" && this.state=="opened" && this.position=="start") {
-        this.isPushingStart.emit(true)
-      } 
-      if (this.mode=="push" && this.state=="opened" && this.position=="end") {
-        this.isPushingEnd.emit(true)
-      }
-      if (this.state=="closed") {
-        this.opened = false
-      } else {
-        this.opened = true
-      }
+    if (this.mode=="push" && this.state=="opened" && this.position=="start") {
+      this.isPushingStart.emit(true)
+    } 
+    if (this.mode=="push" && this.state=="opened" && this.position=="end") {
+      this.isPushingEnd.emit(true)
+    }
+    if (this.state=="closed") {
+      this.opened = false
+    } else if (this.state=="opened") {
+      this.opened = true
+    }
+    
+    this.getViewport();
+    window.addEventListener('resize', () => {
+      this.getViewport();
+    })
   }
+
+ 
 
 
   //Methods
@@ -55,43 +61,72 @@ export class Sidebar {
       } else { this.sidebarWidth.emit(currentSidebarWidth) }
     }
 
+  @Method()
+    getViewport() {
+      if (window.innerWidth <= 992 && this.state == "opened") {
+        this.opened = false
+        if (this.mode=="push") {
+          console.log("hello")
+          this.isPushingStart.emit(false)
+          this.over = true
+          this.dismissable = true
+        }
+      } else if (window.innerWidth > 992 && this.opened == false && this.state == "opened") {
+        this.opened = true
+        if (this.mode == "push") {
+          this.isPushingStart.emit(true)
+          this.over = false
+          this.dismissable = false
+        }
+      }
+    }
+
 	@Method()
     open() {
       this.getSidebarWidth()
       //Start Position
       if (this.opened && this.position=="start") {
-        this.isPushingStart.emit(false)
+        if (this.mode =="push") {
+          this.isPushingStart.emit(false)
+        }
         this.opened = false
-        this.sidebarEl.classList.remove("open")
       } else if (!this.opened && this.position=="start") {
+        if (this.mode=="push" && !this.over) {
+          this.isPushingStart.emit(true)
+        }
         this.opened = true
-        this.isPushingStart.emit(true)
-        this.sidebarEl.classList.add("open")
       }
+
+
+      
+      
   
       //End Position
       if (this.opened && this.position=="end") {
         this.isPushingEnd.emit(false)
         this.opened = false
-        this.sidebarEl.classList.remove("open")
       } else if (!this.opened && this.position=="end") {
         this.opened = true
         this.isPushingEnd.emit(true)
-        this.sidebarEl.classList.add("open")
       }
     }
   
   @Method()
     close() {
-      // this.opened = false
-      // this.isPushing.emit(false)
+      if (this.opened) {
+        this.opened = false
+        this.isPushingStart.emit(false)
+      }
     }
+
+  
+    
 
 
   render() {
     return (
       <div 
-        class={"sidebar__sheath" + (this.position=="end" ? " end" : " start") + (this.opened ? " open" : "")}
+        class={"sidebar__sheath" + (this.position=="end" ? " end" : " start") + (this.opened ? " open" : "") + (this.dismissable ? " dismissable" : "") + (this.over ? " over" : "")}
         ref={(el: HTMLDivElement) => this.sidebarEl = el}
         style={{"max-width": `${this.width}px`}}
       />

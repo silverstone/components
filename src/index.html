@@ -10,7 +10,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <ss-topbar nav template="dashboard">
+  <ss-topbar template="dashboard">
+    <div slot="sidebar-button">
+      <ss-button type="icon" ripple="dark" onclick="openLeftSidebar()">
+        <i class="material-icons" style="color: #888">
+        menu
+        </i>
+      </ss-button>
+    </div>
     <div slot="tool-1">
       <ss-popover align="right" offset-x="144">
       </ss-popover>
@@ -29,12 +36,19 @@
     </div>
   </ss-topbar>
   <ss-sheath>
-    <ss-sidebar>
+    <div slot="sidebar">
+      <ss-sidebar id="left-sidebar">
+      </ss-sidebar>
+      <ss-sidebar id="right-sidebar" position="end" state="closed" mode="over" backdrop="false">
+      </ss-sidebar>
 
-    </ss-sidebar>
+    </div>
 
 
-  <ss-button color="primary" type="raised" onclick="openModal()">Open</ss-button>
+
+
+
+  
  
   <ss-modal close-outside="true" backdrop="true">
     <ss-button color="primary" type="flat" onclick="closeModal()">close</ss-button>
@@ -65,9 +79,13 @@
         </i>
       </ss-button>
   </div>
-  <div style="display:flex; justify-content: flex-start; align-items: center;">
-    <ss-button onclick="openLeftSidebar()">Open Left Sidebar</ss-button>
-    <ss-button onclick="openRightSidebar()">Open Left Sidebar</ss-button>
+  <div class="block">
+    <ss-button onclick="openLeftSidebar()">Toggle Left Sidebar</ss-button>
+    <ss-button onclick="openRightSidebar()">Toggle Right Sidebar</ss-button>
+  </div>
+
+  <div class="block">
+    <ss-button color="primary" type="raised" onclick="openModal()">Open Modal</ss-button>
   </div>
 
   <ss-table show-checkboxes="true">
@@ -96,6 +114,14 @@
       { firstName: 'Michael', lastName: 'Auderer' },
       { firstName: 'Royce', lastName: 'Shayegan' }
     ]
+    
+    function openLeftSidebar() {
+      $('#left-sidebar').open()
+    }
+
+    function openRightSidebar() {
+      $('#right-sidebar').open()
+    }
   </script>
 
 </body>
