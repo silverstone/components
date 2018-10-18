@@ -46,6 +46,7 @@ export class Topbar {
               <slot name="col-1">
                 <div class="topbar__col">
                   <slot name="row-1 col-1">
+                    <div class="topbar__row">
                     <div class="sidebar-button__sheath">
                       <slot name="sidebar-button">
                         
@@ -54,9 +55,10 @@ export class Topbar {
                     <div class="logo__sheath">
                       <slot name="logo">
                         <div class="logo">
-                          <span>Logo</span>
+                          <img src="/assets/sslogo.svg" alt="" />
                         </div>
                       </slot>
+                    </div>
                     </div>
                   </slot>
                 </div>

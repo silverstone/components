@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Element, Watch, Listen } from '@stencil/core';
+import { Component, State, Element, Listen, Method, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ss-sheath',
@@ -9,11 +9,24 @@ export class Sheath {
 
   @Element() el: HTMLElement
   sheathEl: HTMLElement
+  sheathContentEl: HTMLElement
+
+  @Prop() type: string = "col"
+
 
   @State() sidebarOpened: boolean
   @State() isPushingStart: boolean = false
   @State() isPushingEnd: boolean = false
+  @State() hasClicked: boolean = false
   @State() pushWidth: number
+
+  @Method()
+  sheathClick() {
+    const sidebar = this.el.querySelector('ss-sidebar')
+      if (sidebar.opened && sidebar.dismissable) {
+        sidebar.close()
+      }
+  }
 
   @Listen('isPushingStart')
   isPushingStartHandler(event: CustomEvent) {
@@ -31,18 +44,24 @@ export class Sheath {
       this.pushWidth = event.detail
     }
   }
+  
 
   render() {
     return (
       <div 
-        class={"sheath" + (this.sidebarOpened ? " push" : "")}
+        class={"sheath"}
         style={{
           "padding-left": (this.isPushingStart) ? `${this.pushWidth}px` : "",
           "padding-right": (this.isPushingEnd) ? `${this.pushWidth}px` : ""
         }}
         ref={(el: HTMLDivElement) => this.sheathEl = el}
       >
+        <slot name="sidebar"></slot>
+        <div class="sheath-content"
+        onClick={(() => this.sheathClick())}
+        ref={(el: HTMLDivElement) => this.sheathContentEl = el}>
         <slot />
+        </div>
       </div>
     )
   }
