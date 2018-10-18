@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core'
 import { sass } from '@stencil/sass'
+import alias from 'rollup-plugin-alias'
 
 export const config: Config = {
   namespace: 'silverstone',
@@ -17,6 +18,10 @@ export const config: Config = {
   plugins: [
     sass({injectGlobalPaths: [
       'src/global/app.scss'
-    ]})
+    ]}),
+    // allow for @/foo/bar imports
+    alias({
+      '@': 'src'
+    })
   ]
 }
