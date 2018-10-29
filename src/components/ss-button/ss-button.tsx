@@ -23,8 +23,7 @@ export class ButtonComponent {
   
   @Listen('rippleEnd')
   handleRippleEnd(event: CustomEvent) {
-    this.rippleEnd = event.detail
-    if (this.rippleEnd) {
+    if (event.detail) {
       this.ripples = this.ripples.slice(1)
     }
   }
@@ -33,9 +32,9 @@ export class ButtonComponent {
     let leftMouseDown = false
     let rightMouseDown = false
 
-    if (event.which == 0) {
+    if (event.which === 0) {
       leftMouseDown = true
-    } else if (event.which == 2) {
+    } else if (event.which === 2) {
       rightMouseDown = true
     }
 
@@ -49,10 +48,10 @@ export class ButtonComponent {
 
       this.isMouseDown = true
 
-      const rect = this.buttonEl.getBoundingClientRect()
+      const rect = this.el.getBoundingClientRect()
       const offsetLeft = rect.left + (window.pageXOffset || document.documentElement.scrollLeft)
       const offsetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop)
-      const { offsetWidth, offsetHeight } = this.buttonEl
+      const { offsetWidth, offsetHeight } = this.el
     
       const rippleSize = offsetWidth > offsetHeight ? offsetWidth : offsetHeight
     
@@ -75,17 +74,22 @@ export class ButtonComponent {
         left: centerX + 'px'
       }
       
-      this.ripples = [...this.ripples, (<ss-ripple class="ripple" style={(this.type=="icon") ? iconRippleStyles : rippleStyles}
-      ref={(el: HTMLButtonElement) => this.rippleEl = el} />)]
-
+      this.ripples = [
+        ...this.ripples,
+        <ss-ripple 
+          class="ripple"
+          style={(this.type=="icon") ? iconRippleStyles : rippleStyles}
+          ref={(el: HTMLButtonElement) => this.rippleEl = el} 
+        />
+      ]
 
       } else if (this.isMouseDown && rightMouseDown){
-        this.fadeOutRipple(event)
+        this.fadeOutRipple()
       }
     }
   
 
-  fadeOutRipple = (event) => {
+  fadeOutRipple = () => {
     const ripple: any = this.ripples[this.ripples.length - 1]
     if (this.isMouseDown && ripple.elm) {
       this.isMouseDown = false
@@ -104,14 +108,16 @@ export class ButtonComponent {
   render() {
     return (
       <button 
-      ref={(el: HTMLButtonElement) => this.buttonEl = el}
-      class={`${this.type} ${this.color} ${this.ripple}`}
-      onMouseDown={this.handleMouseDown}
-      onMouseLeave={this.fadeOutRipple}
-      onMouseUp={this.fadeOutRipple}>
+        ref={(el: HTMLButtonElement) => this.buttonEl = el}
+        class={`${this.type} ${this.color} ${this.ripple}`}
+        onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.fadeOutRipple}
+        onMouseUp={this.fadeOutRipple}
+      >
         <div 
-        ref={(el: HTMLElement) => this.rippleContainerEl = el}
-        class="ripple__container">
+          ref={(el: HTMLElement) => this.rippleContainerEl = el}
+          class="ripple__container"
+        >
           {...this.ripples}
         </div>
         <span>
