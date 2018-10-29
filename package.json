@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@stencil/core": "^0.13.2",
+    "@stencil/core": "^0.15.0",
     "@stencil/sass": "^0.1.1",
     "@storybook/addon-a11y": "^4.0.0-rc.0",
     "@storybook/addon-actions": "^4.0.0-rc.0",
