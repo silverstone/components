@@ -26,7 +26,6 @@ export class RippleComponent {
       this.el.parentNode.removeChild(this.el)
       this.rippleFadeOut = true
       this.rippleEnd.emit(true)
-      // console.log(this.rippleFadeOut)
     }
   }
 }

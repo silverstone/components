@@ -8,10 +8,11 @@
   bottom: 0;
   z-index: 999;
   transition: all 200ms ease;
+  box-shadow: 0 0.25rem 0.125rem 0 rgba(0,0,0,0.05);
 
   &.start {
     left: 0;
-    border-right: 1px solid #eee;
+    // border-right: 1px solid #eee;
     transform: translateX(-100%);
 
 
@@ -22,7 +23,7 @@
 
   &.end {
     right: 0;
-    border-left: 1px solid #eee;
+    // border-left: 1px solid #eee;
     transform: translateX(100%);
 
     &.open {

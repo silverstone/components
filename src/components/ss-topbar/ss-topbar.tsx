@@ -3,11 +3,11 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'ss-topbar',
   styleUrl: 'ss-topbar.scss',
-  shadow: true
+  shadow: false
 })
 export class Topbar {
 
-  @Prop() rows: number = 1
+  @Prop() rows: number = 0
   @Prop() cols: number = 3
   @Prop() template: string = "custom"
   @Prop() sidebar: boolean = true
@@ -21,19 +21,7 @@ export class Topbar {
     if (this.template=="custom") {
       return ([
         <div class="topbar__sheath">
-          {Array(this.rows).fill(null).map((_, irow) => (
-            <slot name={"row-" + (irow + 1)}>
-              <div class="topbar__row">
-                {Array(this.cols).fill(null).map((_, icol) => (
-                  <slot name={"col-" + (icol + 1)}>
-                    <div class="topbar__col">
-                      <slot name={"row-" + (irow + 1) + " " + "col-" + (icol + 1)}></slot>
-                    </div>
-                  </slot>
-                ))}
-              </div>
-            </slot>
-          ))}
+          <slot />
         </div>
       ])
     } 
