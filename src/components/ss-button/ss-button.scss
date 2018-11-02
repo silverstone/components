@@ -69,12 +69,15 @@ button {
     color: #595f6d;
   }
   &.primary {
+    color: $default-primary-color;
     color: var(--app-primary-color, $default-primary-color);
   }
   &.secondary {
+    color: $default-secondary-color;
     color: var(--app-secondary-color, $default-secondary-color);
   }
   &.danger {
+    color: $default-danger-color;
     color: var(--app-danger-color, $default-danger-color);
   }
 }
@@ -85,15 +88,21 @@ button {
 
 .raised, .flat {
   &.primary {
+    background-color: $default-primary-color;
     background-color: var(--app-primary-color, $default-primary-color);
+    color: #ffffff;
     color: var(--app-primary-text-color, #ffffff);
   }
   &.secondary {
+    background-color: $default-secondary-color;
     background-color: var(--app-secondary-color, $default-secondary-color);
+    color: #1a1a1a;
     color: var(--app-secondary-text-color, #1a1a1a);
   }
   &.danger {
+    background-color: $default-danger-color;
     background-color: var(--app-danger-color, $default-danger-color);
+    color: #ffffff;
     color: var(--app-danger-text-color, #ffffff);
   }
 
@@ -110,15 +119,21 @@ button {
     background-color: #e0e0e0;
   }
   &.primary {
+    border-color: $default-primary-color;
     border-color: var(--app-primary-color, $default-primary-color);
+    color: $default-primary-color;
     color: var(--app-primary-color, $default-primary-color);
   }
   &.secondary {
+    border-color: $default-secondary-color;
     border-color: var(--app-secondary-color, $default-secondary-color);
+    color: $default-secondary-color;
     color: var(--app-secondary-color, $default-secondary-color);
   }
   &.danger {
+    border-color: $default-danger-color;
     border-color: var(--app-danger-color, $default-danger-color);
+    color: $default-danger-color;
     color: var(--app-danger-color, $default-danger-color);
   }
 }
